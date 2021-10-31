@@ -1,0 +1,30 @@
+/* Overall dashboard styling */
+.dashboard {
+    @apply
+    flex 
+    h-full 
+    w-full 
+    absolute;
+}
+
+/* Dashboard flex where card(s) live */
+.dashboard-flex-content {
+    @apply
+    pt-5 
+    pl-5 
+    flex
+    flex-wrap 
+    overflow-scroll
+    transition-all;
+    height: calc(100% - var(--header-h));
+    width: calc(100vw - var(--sidebar-w));
+    margin-top: var(--header-h);
+}
+
+/* .card .backdrop {
+    @apply
+    bg-red-100
+    bg-opacity-5 
+    p-5 
+    rounded;
+} */

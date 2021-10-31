@@ -1,0 +1,27 @@
+/* Header wrapper styles */
+.header {
+    @apply
+    fixed
+    w-full
+    pb-5
+    pt-10
+    px-5
+    border-b
+    border-none;
+    height: var(--header-h);
+}
+.light .header {
+    @apply
+    border-gray-100;
+}
+.dark .header {
+    @apply
+    border-gray-900;
+}
+/* Header content styles */
+.header-content {
+    @apply 
+    h-10 
+    flex
+    space-x-2;
+}

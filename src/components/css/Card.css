@@ -1,0 +1,26 @@
+/* Standalone card styling */
+.card {
+    @apply
+    p-5
+    rounded
+    flex-grow
+    
+    w-min;
+    /* min-width: 256px;
+    min-height: 256px; */
+}
+/* Card styling when inside a flex arrangement */
+.dashboard-flex-content .card {
+    @apply
+    mb-5
+    mr-5;
+}
+/* Card styling when only child */
+.dashboard-flex-content .card:only-child {
+    @apply
+    border-none
+    -mt-5
+    -ml-5
+    mr-0
+    mb-0;
+}
