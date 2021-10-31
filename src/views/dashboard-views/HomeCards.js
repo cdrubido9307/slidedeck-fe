@@ -5,6 +5,7 @@ import React from "react";
 import Card from "../../components/Card";
 import Button from "../../components/Button";
 import ButtonGroup from "../../components/ButtonGroup";
+import FileIcon from "../../components/FileIcon";
 // Import icons
 import { IoIosAirplane } from "react-icons/io";
 import { FaThumbsUp, FaRegClock } from "react-icons/fa";
@@ -13,6 +14,18 @@ import { HiPlus } from "react-icons/hi";
 // Import API and static content
 
 const HomeCards = (props) => {
+
+    const testFiles = [
+        {name: "testing testing hello world"},
+        {name: "lorem ipsum Dolor"},
+        {name: "Sit amet"},
+        {name: "testing testing hello world asd asdasd"},
+        {name: "lorem ipsum Dolor"},
+        {name: "Sit amet"},
+        {name: "testing testing hello world asd asdasd"},
+        {name: "asdasdasdasdasdas"}
+    ]
+
     return (
         <>
             <Card>
@@ -28,12 +41,23 @@ const HomeCards = (props) => {
                 <div className="backdrop">
                     <div className="flex items-center">
                         <FaThumbsUp className="h-4 w-4 mr-2 text-gray-400"/>
-                        <div className="ml-2 pl-4 border-l-2 border-gray-200">
+                        <div className="ml-2 pl-4 border-l-2">
                             <p>Nothing to see here...</p>
                             <p className="subtitle">
                                 No recent logs
                             </p>
                         </div>
+                    </div>
+                    <div className="h-5"/>
+                    <div className="file-browser">
+                        {testFiles.map((file, i) => {return(
+                            <FileIcon file={file} key={i}/>
+                        )})}
+                        {/* <FileIcon/>
+                        <FileIcon/>
+                        <FileIcon/>
+                        <FileIcon/>
+                        <FileIcon/> */}
                     </div>
                 </div>
 

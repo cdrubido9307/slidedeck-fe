@@ -6,7 +6,6 @@
     w-full 
     absolute;
 }
-
 /* Dashboard flex where card(s) live */
 .dashboard-flex-content {
     @apply
@@ -20,11 +19,26 @@
     width: calc(100vw - var(--sidebar-w));
     margin-top: var(--header-h);
 }
-
-/* .card .backdrop {
+.card .backdrop {
     @apply
-    bg-red-100
-    bg-opacity-5 
     p-5 
     rounded;
-} */
+}
+.light .card .backdrop {
+    @apply
+    bg-gray-100
+    bg-opacity-50;
+}
+.light .card .backdrop div {
+    @apply 
+    border-gray-200;
+}
+.dark .card .backdrop {
+    @apply
+    bg-gray-700
+    bg-opacity-50;
+}
+.dark .card .backdrop div {
+    @apply 
+    border-gray-600;
+}

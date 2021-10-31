@@ -1,0 +1,53 @@
+.file-icon {
+    @apply
+    flex
+    w-min
+    space-x-3;
+}
+
+.file-browser .file-icon {
+    @apply
+    mr-5
+    mb-5
+    flex
+    items-center;
+}
+
+.file-browser {
+    @apply
+    -mb-5
+    -mr-5
+    flex 
+    flex-wrap;
+}
+
+.file-icon .icon {
+    @apply
+    flex-shrink-0
+    bg-white
+    rounded
+    shadow
+    flex
+    items-center
+    justify-center;
+    height: 5.5rem;
+    width: 4.25rem;
+}
+
+.file-icon .icon svg {
+    @apply
+    h-10
+    w-10
+    text-gray-200
+    ;
+}
+
+.file-icon .info {
+    @apply
+    w-32
+    h-full;
+}
+
+.file-icon .info .filename {
+
+}
