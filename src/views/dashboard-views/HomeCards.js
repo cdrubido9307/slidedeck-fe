@@ -6,6 +6,7 @@ import Card from "../../components/Card";
 import Button from "../../components/Button";
 import ButtonGroup from "../../components/ButtonGroup";
 import FileIcon from "../../components/FileIcon";
+import FileBrowser from "../../components/FileBrowser";
 // Import icons
 import { IoIosAirplane } from "react-icons/io";
 import { FaThumbsUp, FaRegClock } from "react-icons/fa";
@@ -54,7 +55,6 @@ const HomeCards = (props) => {
                 <div className="h-5"/>
                 <p className="text-lg font-bold">See logs you've been working on</p>
                 <div className="h-5"/>
-
                 <div className="backdrop">
                     <div className="flex items-center">
                         <FaThumbsUp className="h-4 w-4 mr-2 text-gray-400"/>
@@ -65,25 +65,15 @@ const HomeCards = (props) => {
                             </p>
                         </div>
                     </div>
-                    <div className="h-5"/>
-                    <div className="file-browser">
-                        {testFiles.map((file, i) => {return(
-                            <FileIcon file={file} key={i}/>
-                        )})}
-                        {/* <FileIcon/>
-                        <FileIcon/>
-                        <FileIcon/>
-                        <FileIcon/>
-                        <FileIcon/> */}
-                    </div>
                 </div>
-
                 <div className="h-5"/>
                 <Button 
                     icon={IoIosAirplane}
                 >
                     Browse All Logs
                 </Button>
+                <div className="h-5"/>
+                <FileBrowser files={testFiles}/>
             </Card>
 
 
