@@ -5,6 +5,7 @@ import React from "react";
 // Import components
 // Import icons
 import { VscTable } from "react-icons/vsc";
+import { ImTable } from "react-icons/im";
 // Import API and static content
 
 const truncate = (string, max) => {
@@ -26,14 +27,14 @@ const truncate = (string, max) => {
                 if (foundSpace && string[i] !== " " && !startCopy) startCopy = true;
                 if (startCopy) short = string[i] + short;
             }
-            return short + "...";
+            return short + " ...";
         } else {
             return string;
         }
     } else {
         if (string.length > Math.floor(0.33 * max)) {
             short = string.substring(0, Math.floor(0.33 * max));
-            return short + "...";
+            return short + " ...";
         } else {
             return string;
         }
@@ -46,7 +47,8 @@ const FileIcon = (props) => {
     return(
         <div className="file-icon log">
             <div className="icon">
-                <VscTable/>
+                <p className="row-count">{props.file.rows}</p>
+                <ImTable/>
             </div>
             <div className="info">
                 <p className="filename">

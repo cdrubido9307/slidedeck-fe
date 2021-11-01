@@ -13,8 +13,7 @@
     pl-5 
     flex
     flex-wrap 
-    overflow-scroll
-    transition-all;
+    overflow-scroll;
     height: calc(100% - var(--header-h));
     width: calc(100vw - var(--sidebar-w));
     margin-top: var(--header-h);

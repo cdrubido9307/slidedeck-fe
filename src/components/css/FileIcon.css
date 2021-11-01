@@ -1,16 +1,15 @@
 .file-icon {
     @apply
-    flex
+    block
     w-min
-    space-x-3;
+    space-x-3
+    flex;
 }
 
 .file-browser .file-icon {
     @apply
     mr-5
-    mb-5
-    flex
-    items-center;
+    mb-5;
 }
 
 .file-browser {
@@ -24,14 +23,15 @@
 .file-icon .icon {
     @apply
     flex-shrink-0
-    bg-white
-    rounded
+    rounded-sm
     shadow
     flex
     items-center
-    justify-center;
-    height: 5.5rem;
-    width: 4.25rem;
+    justify-center
+    bg-white
+    relative;
+    height: 4.25rem;
+    width: 3.25rem;
 }
 
 .file-icon .icon svg {
@@ -42,12 +42,19 @@
     ;
 }
 
+.file-icon .icon .row-count {
+    @apply
+    absolute
+    bg-red-500
+    text-sm;
+}
+
 .file-icon .info {
     @apply
-    w-32
-    h-full;
+    w-32;
 }
 
 .file-icon .info .filename {
-
+    max-height: 3rem;
+    overflow: hidden;
 }

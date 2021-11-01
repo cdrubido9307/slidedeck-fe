@@ -2,12 +2,12 @@
 .sidebar {
     @apply
     flex-shrink-0
-    transition-all
     overflow-hidden
     p-5
     pt-10
     border-r
     border-none;
+    transition: width 0.1s;
 }
 .sidebar.open {
     /* @apply

@@ -1,6 +1,6 @@
-# Alpha UI
+# Slidedeck Front End
 
-Front end React source code for the Slide Information Management web app. Developed by team Alpha for UNC Health as part of [COMP 523](https://comp523.cs.unc.edu/) at UNC Chapel Hill.
+Front end React source code for the Slidedeck web app. Developed by team 𝛼 ⍺ Alpha for UNC Health as part of [COMP 523](https://comp523.cs.unc.edu/) at UNC Chapel Hill.
 
 ## Getting Started
 

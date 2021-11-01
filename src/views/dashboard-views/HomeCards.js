@@ -16,14 +16,31 @@ import { HiPlus } from "react-icons/hi";
 const HomeCards = (props) => {
 
     const testFiles = [
-        {name: "testing testing hello world"},
-        {name: "lorem ipsum Dolor"},
-        {name: "Sit amet"},
-        {name: "testing testing hello world asd asdasd"},
-        {name: "lorem ipsum Dolor"},
-        {name: "Sit amet"},
-        {name: "testing testing hello world asd asdasd"},
-        {name: "asdasdasdasdasdas"}
+        {
+            name: "testing testing hello world",
+            rows: 123
+        }, {
+            name: "lorem ipsum Dolor",
+            rows: 3
+        }, {
+            name: "Sit amet",
+            rows: 1
+        }, {
+            name: "testing testing hello world asd asdasd",
+            rows: 231
+        }, {
+            name: "lorem ipsum Dolor",
+            rows: 512
+        }, {
+            name: "Sit amet",
+            rows: 24
+        }, {
+            name: "testing testing hello world asd asdasd",
+            rows: 12
+        }, {
+            name: "asdasdasdasdasdas",
+            rows: 4
+        }
     ]
 
     return (
