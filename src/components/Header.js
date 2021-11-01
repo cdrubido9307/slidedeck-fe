@@ -15,7 +15,7 @@ const Header = (props) => {
     return(
         <div className="header">
             <div className="header-content">
-                <ThemeSwitcher/>
+                {/* <ThemeSwitcher/> */}
                 <TextBox icon={FaSearch} placeholder="Search..."/>
                 <Button icon={FaSearch}>
                     Test Button

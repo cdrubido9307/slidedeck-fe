@@ -13,8 +13,9 @@ const ThemeContext = createContext();
 
 const ThemeProvider = (props) => {
 
-    const defaultTheme = (storage.get("theme") === undefined) ? props.theme : storage.get("theme");
-    const [theme, setTheme] = useState(defaultTheme);
+    const lastTheme = storage.get("theme");
+    const defaultTheme = themes[0];
+    const [theme, setTheme] = useState(lastTheme ? lastTheme : defaultTheme);
     /**
      * Adds/remove the appropriate theme classes 
      * to root <html> element.
