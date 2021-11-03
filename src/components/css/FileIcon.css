@@ -7,8 +7,8 @@
 }
 .file-browser .file-icon {
     @apply
-    mr-5
-    mb-5;
+    mr-4
+    mb-4;
 }
 .file-icon .icon {
     @apply
@@ -16,25 +16,33 @@
     rounded-sm
     shadow
     flex
-    items-center
-    justify-center
+    flex-col
+    text-center
     bg-white
-    relative;
+    relative
+    overflow-hidden;
     height: 4.25rem;
     width: 3.25rem;
 }
-.file-icon .icon svg {
+.file-icon .icon .file-size {
     @apply
-    h-10
-    w-10
-    text-gray-200
-    ;
+    flex-grow
+    w-full
+    flex
+    items-center
+    justify-center
+    text-black;
 }
-.file-icon .icon .row-count {
+.file-icon .icon .file-type {
     @apply
-    absolute
-    bg-red-500
-    text-sm;
+    m-1
+    border
+    border-gray-400
+    text-gray-400
+    text-xs
+    uppercase
+    rounded-sm
+    truncate;
 }
 .file-icon .info {
     @apply

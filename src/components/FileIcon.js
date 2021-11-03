@@ -4,7 +4,6 @@ import "./css/FileIcon.css"
 import React from "react";
 // Import components
 // Import icons
-import { VscTable } from "react-icons/vsc";
 import { ImTable } from "react-icons/im";
 // Import API and static content
 
@@ -47,8 +46,9 @@ const FileIcon = (props) => {
     return(
         <div className="file-icon log">
             <div className="icon">
-                <p className="row-count">{props.file.rows}</p>
-                <ImTable/>
+                <p className="file-size"></p>
+                <p className="file-type">LOG</p>
+                {/* <ImTable/> */}
             </div>
             <div className="info">
                 <p className="filename">

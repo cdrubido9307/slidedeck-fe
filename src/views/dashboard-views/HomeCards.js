@@ -19,28 +19,28 @@ const HomeCards = (props) => {
     const testFiles = [
         {
             name: "testing testing hello world",
-            rows: 123
+            type: "log"
         }, {
             name: "lorem ipsum Dolor",
-            rows: 3
+            type: "log"
         }, {
             name: "Sit amet",
-            rows: 1
+            type: "log"
         }, {
             name: "testing testing hello world asd asdasd",
-            rows: 231
+            type: "log"
         }, {
             name: "lorem ipsum Dolor",
-            rows: 512
+            type: "log"
         }, {
             name: "Sit amet",
-            rows: 24
+            type: "log"
         }, {
             name: "testing testing hello world asd asdasd",
-            rows: 12
+            type: "log"
         }, {
             name: "asdasdasdasdasdas",
-            rows: 4
+            type: "log"
         }
     ]
 
@@ -52,9 +52,9 @@ const HomeCards = (props) => {
                     <Button icon={CgMenuGridR}>Browse Logs</Button>,
                     <Button icon={HiPlus}>New Log</Button>
                 ]}/>
-                <div className="h-5"/>
+                <div className="h-4"/>
                 <p className="text-lg font-bold">See logs you've been working on</p>
-                <div className="h-5"/>
+                <div className="h-4"/>
                 <div className="backdrop">
                     <div className="flex items-center">
                         <FaThumbsUp className="h-4 w-4 mr-2 text-gray-400"/>
@@ -66,13 +66,13 @@ const HomeCards = (props) => {
                         </div>
                     </div>
                 </div>
-                <div className="h-5"/>
+                <div className="h-4"/>
                 <Button 
                     icon={IoIosAirplane}
                 >
                     Browse All Logs
                 </Button>
-                <div className="h-5"/>
+                <div className="h-4"/>
                 <FileBrowser files={testFiles}/>
             </Card>
 

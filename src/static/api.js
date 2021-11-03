@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const url = "http://comp-523-api-aghayes.apps.cloudapps.unc.edu";
+const url = "https://be-slidedeck.herokuapp.com/login";
 
 /** Async Axios API calls in one neat callable object.
  *  @example

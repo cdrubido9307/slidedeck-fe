@@ -1,7 +1,7 @@
 /* Sidebar item styles */
 .sidebar-item {
     @apply
-    h-10
+    h-8
     w-full 
     rounded
     flex
@@ -37,16 +37,14 @@
 }
 .sidebar-item-icon {
     @apply
-    h-10 
-    w-10 
+    h-8 
+    w-8 
     mr-2
-    my-1 
     flex 
     items-center 
     justify-center 
     flex-shrink-0 
-    text-current
-    ;
+    text-current;
 }
 .sidebar-item:hover .sidebar-item-icon {
     @apply 
@@ -62,7 +60,7 @@
     fixed
     z-50
     ml-12
-    h-10
+    h-8
     rounded
     flex
     items-center

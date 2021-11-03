@@ -37,8 +37,8 @@ const TextBox = (props) => {
                 className={className}
             />
             {props.icon &&
-                <div className={`icon ${focus ? "focus": ""} h-10 w-10 relative -mt-10 flex justify-center items-center`}>
-                    <props.icon className="h-4 w-4"/>
+                <div className={`icon ${focus ? "focus": ""}`}>
+                    <props.icon/>
                 </div>
             }
         </div>

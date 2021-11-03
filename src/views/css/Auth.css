@@ -13,7 +13,7 @@
     @apply 
     w-80 
     rounded 
-    p-5;
+    p-4;
 }
 
 .light .auth-background {

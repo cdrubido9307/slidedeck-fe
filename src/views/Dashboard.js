@@ -27,9 +27,9 @@ const Dashboard = (props) => {
             title: dashboardItems[0].title
         },
         sidebarShow: true,
-        sidebarOpenWidth: "18rem",
-        sidebarClosedWidth: "5rem",
-        headerHeight: "6.25rem"
+        sidebarOpenWidth: "16rem",
+        sidebarClosedWidth: "4rem",
+        headerHeight: "5rem"
     }
     const [dashboardState, setDashboardState] = useState(storage.get("dashboard") === undefined ? defaultState : storage.get("dashboard"));
     const [dashboardContent, setDashboardContent] = useState(<></>);
@@ -91,7 +91,7 @@ const Dashboard = (props) => {
             <div className={"dashboard" + (dashboardState.sidebarShow ? " show-sidebar" : "")}>
                 {/* Sidebar */}
                 <Sidebar show={dashboardState.sidebarShow}>
-                    <div className="space-y-2">
+                    <div className="space-y-4">
                         {dashboardItems.map((item, i) => {return(
                             <SidebarItem 
                                 active={i === dashboardState.active.i}

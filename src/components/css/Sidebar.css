@@ -3,8 +3,8 @@
     @apply
     flex-shrink-0
     overflow-hidden
-    p-5
-    pt-10
+    p-4
+    pt-8
     border-r
     border-none;
     transition: width 0.1s;
@@ -35,12 +35,12 @@
 /* Sidebar logo styles */
 .sidebar-logo {
     @apply
-    mb-10
+    mb-8
     w-full 
     flex 
     items-center 
     justify-start 
-    h-10;
+    h-8;
 }
 .sidebar-logo .sidebar-logo-type {
     @apply
@@ -48,7 +48,7 @@
 }
 .sidebar-logo .sidebar-logo-type img {
     @apply
-    h-7
+    h-6
     ml-2
     flex-shrink-0;
 }
@@ -59,8 +59,8 @@
 /* Sidebar toggle button styles */
 .toggle-button {
     @apply
-    h-10
-    w-10
+    h-8
+    w-8
     flex
     items-center
     justify-center
@@ -91,8 +91,8 @@
 .toggle-button img {
     @apply
     absolute
-    h-7
-    w-7
+    h-6
+    w-6
     transition-opacity
     opacity-100;
 }

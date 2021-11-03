@@ -24,19 +24,19 @@ const DeveloperCards = (props) => {
         <>
             <Card>
                 <ThemeSwitcher/>
-                <div className="h-5"/>
+                <div className="h-4"/>
                 <ButtonGroup buttons={[
                     <Button icon={FaRegClock}>Recent Logs</Button>,
                     <Button icon={CgMenuGridR}>Browse Logs</Button>,
                     <Button icon={HiPlus}>New Log</Button>
                 ]}/>
-                <div className="h-5"/>
+                <div className="h-4"/>
                 <Button 
                     icon={IoIosAirplane}
                 >
                     Browse All Logs
                 </Button>
-                <div className="h-5"/>
+                <div className="h-4"/>
                 <Button 
                     onClick={clearLocalStorage}
                     icon={FaThumbsUp}

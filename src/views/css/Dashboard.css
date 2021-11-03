@@ -9,8 +9,8 @@
 /* Dashboard flex where card(s) live */
 .dashboard-flex-content {
     @apply
-    pt-5 
-    pl-5 
+    pt-4 
+    pl-4 
     flex
     flex-wrap 
     overflow-scroll;
@@ -20,7 +20,7 @@
 }
 .card .backdrop {
     @apply
-    p-5 
+    p-4 
     rounded;
 }
 .light .card .backdrop {
