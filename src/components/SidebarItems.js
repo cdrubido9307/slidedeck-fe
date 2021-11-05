@@ -1,14 +1,18 @@
 // Import CSS
 import './css/SidebarItem.css';
 // Import major dependencies
-import React, { useRef, useState } from 'react';
+import React, { useContext, useRef, useState } from 'react';
+import { useHistory } from "react-router-dom";
 // Import components
+import Dashboard from "../views/Dashboard";
 import FX from './FX';
 // Import icons
+import { AiTwotoneFolderOpen } from "react-icons/ai";
 // Import API and static content
 
 const SidebarItem = (props) => {
 
+    const DashboardContext = useContext(Dashboard.Context);
     // For Ripple FX
     const [ripple, setRipple] = useState(FX.Ripple.util.defaultState());
     const buttonRef = useRef();
@@ -19,14 +23,19 @@ const SidebarItem = (props) => {
         setRipple(FX.Ripple.util.stopState(e, buttonRef));
     }
     // End Ripple FX
+    const history = useHistory();
     const changeDashboardPage = () => {
-        props.setDashboardState((state) => {
+        DashboardContext.setState((state) => {
             const newState = { ...state };
+            newState.path = "/dashboard" + props.path;
             newState.active.i = props.index;
             newState.active.title = props.title;
             return newState;
         })
+        history.push("/dashboard" + props.path);
     }
+
+    // const foo = props.icon ? props.icon : AiTwotoneFolderOpen;
 
     return (
         <div className="sidebar-item-wrapper">  
@@ -44,7 +53,11 @@ const SidebarItem = (props) => {
             >
                 <FX.Ripple.Component state={ripple}/>
                 <div className="sidebar-item-icon">
-                    <props.icon className="h-5 w-5"/>
+                    {props.icon ? 
+                        <props.icon className="icon"/>
+                        :
+                        <AiTwotoneFolderOpen className="icon"/>
+                    }
                 </div>
                 <p className="whitespace-nowrap">
                     {props.title}

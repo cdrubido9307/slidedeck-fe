@@ -1,4 +1,5 @@
 // Import CSS
+import "./css/Banner.css"
 // Import major dependencies
 import React from "react";
 // Import components
@@ -8,33 +9,11 @@ import { MdError } from "react-icons/md";
 
 const Banner = (props) => {
 
-    let classes = `
-        transition-all
-        w-full
-        flex
-        justify-center
-        items-center
-        relative
-        z-40
-        bg-red-500
-        text-white
-        h-10
-        -mb-10
-        shadow-lg
-        transform
-    `;
-
-    if (props.show) {
-        classes = `${classes} opacity-100 translate-y-0`
-    } else {
-        classes = `${classes} opacity-0 -translate-y-10`
-    }
-
     return (
-        <div className={classes}>
+        <div className={"banner " + (props.show ? "show" : "hidden")}>
             <div className="text-current mr-2">
-                <div className="bg-white bg-opacity-25 h-5 w-5 -mb-5 rounded-full animate-ping"/>
-                <MdError className="h-5 w-5"/>
+                <div className="bg-white bg-opacity-25 h-4 w-4 -mb-4 rounded-full animate-ping"/>
+                <MdError className="h-4 w-4 text-white"/>
             </div>
             {props.children}
         </div>

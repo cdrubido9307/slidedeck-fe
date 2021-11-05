@@ -4,21 +4,22 @@
     flex
     w-min
     rounded
-    shadow;
+    shadow
+    p-0.5
+    space-x-0.5;
 }
 .light .button-group {
     @apply
-    bg-gray-200
-    bg-opacity-50;
+    bg-gray-100;
 }
 .dark .button-group {
     @apply
-    bg-gray-900
-    bg-opacity-50;
+    bg-gray-700;
 }
 .button-group .button {
     @apply
-    rounded-none
+    h-7
+    rounded-sm
     relative
     bg-transparent
     shadow-none;
@@ -27,7 +28,7 @@
     @apply
     z-30;
 }
-.light .button-group .button-wrapper + .button-wrapper {
+/* .light .button-group .button-wrapper + .button-wrapper {
     @apply
     border-l
     border-gray-300;
@@ -36,7 +37,7 @@
     @apply
     border-l
     border-gray-700;
-}
+} */
 .button-group .button-wrapper:first-child .button {
     /* border-top-left-radius: 16px;
     border-bottom-left-radius: 16px; */
@@ -51,7 +52,8 @@
     @apply
     bg-carolina
     text-white
-    shadow;
+    shadow
+    pointer-events-none;
 }
 .button-group .button-wrapper.active .icon {
     @apply

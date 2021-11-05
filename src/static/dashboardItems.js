@@ -1,4 +1,4 @@
-import { AiFillProfile } from "react-icons/ai";
+import { AiTwotoneFolderOpen } from "react-icons/ai";
 import { BiTable } from "react-icons/bi";
 import { FaClipboardList } from "react-icons/fa";
 import { HiHome } from "react-icons/hi";
@@ -11,12 +11,16 @@ const dashboardItems = [
         icon: HiHome
     }, {
         title: "Enter Data",
-        path: "/enter",
+        path: "/new",
         icon: BiTable
     }, {
+        title: "Manage Logs",
+        path: "/logs",
+        icon: AiTwotoneFolderOpen
+    }, {
         title: "Manage Templates",
-        path: "/manage/templates",
-        icon: AiFillProfile
+        path: "/templates",
+        icon: AiTwotoneFolderOpen
     }, {
         title: "Reports",
         path: "/reports",

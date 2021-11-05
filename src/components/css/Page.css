@@ -1,0 +1,14 @@
+/* Standalone card styling */
+.page {
+    @apply
+    p-4
+    pt-8
+    flex-grow
+    w-min;
+}
+
+.page.with-header {
+    @apply
+    pt-4;
+    margin-top: var(--header-h);
+}

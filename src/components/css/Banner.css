@@ -1,0 +1,26 @@
+.banner {
+    @apply
+    transition-all
+    w-full
+    flex
+    justify-center
+    items-center
+    relative
+    z-40
+    bg-red-500
+    h-10
+    -mb-10
+    shadow-lg
+    transform;
+    color: white !important;
+}
+.banner.show {
+    @apply
+    opacity-100 
+    translate-y-0;
+}
+.banner.hidden {
+    @apply
+    opacity-0 
+    -translate-y-10;
+}

@@ -1,3 +1,11 @@
+:root {
+    --sidebar-open-w: 16rem;
+    --sidebar-closed-w: 4rem;
+    --header-h: 5rem;
+    --transition: 0.1s;
+    --test: red;
+}
+
 /* Overall dashboard styling */
 .dashboard {
     @apply
@@ -7,16 +15,16 @@
     absolute;
 }
 /* Dashboard flex where card(s) live */
-.dashboard-flex-content {
+.dashboard-main-content {
     @apply
-    pt-4 
-    pl-4 
     flex
     flex-wrap 
     overflow-scroll;
-    height: calc(100% - var(--header-h));
-    width: calc(100vw - var(--sidebar-w));
-    margin-top: var(--header-h);
+    height: calc(100%);
+    width: calc(100vw - var(--sidebar-closed-w));
+}
+.show-sidebar .dashboard-main-content {
+    width: calc(100vw - var(--sidebar-open-w));
 }
 .card .backdrop {
     @apply

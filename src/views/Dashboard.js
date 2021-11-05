@@ -2,78 +2,77 @@
 import "./css/Dashboard.css";
 // Import major dependencies
 import React, { createContext, useEffect, useState } from "react";
-// import { Helmet } from "react-helmet";
 import { Helmet } from 'react-helmet-async';
-import Card from "../components/Card";
+import Page from "../components/Page";
 // Import components
-import Header from "../components/Header";
 import Sidebar from "../components/Sidebar";
 import SidebarItem from "../components/SidebarItems";
-import HomeCards from "./dashboard-views/HomeCards";
-import DeveloperCards from "./dashboard-views/DeveloperCards";
+// import HomeCards from "./dashboard-pages/HomeCards";
+import DeveloperCards from "./dashboard-pages/DeveloperCards";
+// import Auth from "../components/Auth";
+import ManageLogs from "./dashboard-pages/ManageLogs";
+import ManageTemplates from "./dashboard-pages/ManageTemplates";
 // Import icons
 // Import API and static content
 import dashboardItems from "../static/dashboardItems";
 import storage from "../static/storage";
 // import storage from "../static/storage";
 
-export const DashboardContext = createContext();
+const DashboardContext = createContext();
 
-const Dashboard = (props) => {
+const DashboardPage = (props) => {
     
+    // const AuthContext = useContext(Auth.Context);
     const defaultState = {
         active: {
             i: 0,
-            title: dashboardItems[0].title
+            title: dashboardItems[0].title,
         },
-        sidebarShow: true,
-        sidebarOpenWidth: "16rem",
-        sidebarClosedWidth: "4rem",
-        headerHeight: "5rem"
+        path: props.path ? props.path : "/dashboard/home",
+        sidebarShow: true
     }
-    const [dashboardState, setDashboardState] = useState(storage.get("dashboard") === undefined ? defaultState : storage.get("dashboard"));
-    const [dashboardContent, setDashboardContent] = useState(<></>);
-    // Update CSS variables to resize sidebar
-    const updateCSSProps = () => {
-        let __sidebar_open_w = dashboardState.sidebarOpenWidth;
-        let __sidebar_closed_w = dashboardState.sidebarClosedWidth;
-        let __sidebar_w = dashboardState.sidebarShow ? __sidebar_open_w : __sidebar_closed_w;
-        let __header_h = dashboardState.headerHeight;
-        document
-            .documentElement
-            .style
-            .setProperty("--sidebar-open-w", __sidebar_open_w);
-        document
-            .documentElement
-            .style
-            .setProperty("--sidebar-closed-w", __sidebar_closed_w);
-        document
-            .documentElement
-            .style
-            .setProperty("--sidebar-w", __sidebar_w);
-        document
-            .documentElement
-            .style
-            .setProperty("--header-h", __header_h);
-    }
-    // Update dashboard content based on unique title
-    const updateDashboardContent = (title) => {
-        switch (title) {
-            case "Home":
-                setDashboardContent(<HomeCards/>);
+    const lastState = storage.get("dashboard");
+    if (props.path) {
+        let active = -1;
+        for (let i = 0; i < dashboardItems.length; i++) {
+            if ("/dashboard" + dashboardItems[i].path === props.path) {
+                active = i;
                 break;
-            case "Developer Area":
+            }
+        }
+        if (lastState) {
+            lastState.path = props.path;
+            lastState.active.i = active;
+            lastState.active.title = dashboardItems[active].title;
+        }
+        defaultState.path = props.path;
+        defaultState.active.i = active;
+        defaultState.active.title = dashboardItems[active].title;
+    }
+    const [dashboardState, setDashboardState] = useState(lastState ? lastState : defaultState);
+    const [dashboardContent, setDashboardContent] = useState(<></>);
+    // Update dashboard content based on unique path
+    const updateDashboard = (state) => {
+        switch (state.path) {
+            case "/dashboard/logs":
+                setDashboardContent(<ManageLogs/>);
+                break;
+            case "/dashboard/templates":
+                setDashboardContent(<ManageTemplates/>);
+                break;
+            case "/dashboard/dev":
                 setDashboardContent(<DeveloperCards/>);
                 break;
             default:
-                setDashboardContent(<Card>{title}</Card>);
+                setDashboardContent(<Page>{state.active.title}</Page>);
                 break;
         }
     }
     // Call appropriate update functions when main state changes
     useEffect(() => {
-        updateDashboardContent(dashboardState.active.title);
-        updateCSSProps();
+        // console.log(AuthContext.user);
+        // console.log(dashboardState.path);
+        updateDashboard(dashboardState);
         storage.set("dashboard", dashboardState);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [dashboardState])
@@ -95,11 +94,11 @@ const Dashboard = (props) => {
                         {dashboardItems.map((item, i) => {return(
                             <SidebarItem 
                                 active={i === dashboardState.active.i}
-                                setDashboardState={setDashboardState}
                                 key={i}
                                 index={i}
                                 title={item.title}
                                 icon={item.icon}
+                                path={item.path}
                             ></SidebarItem>
                         )})}
                     </div>
@@ -107,16 +106,19 @@ const Dashboard = (props) => {
                 {/* End sidebar */}
                 {/* Main content */}
                 <div className="flex-grow">
-                    <Header/>
-                    <div className="dashboard-flex-content">
+                    <div className="dashboard-main-content">
                         {dashboardContent}
                     </div>
                 </div>
-                {/* End main content */}
             </div>
         </DashboardContext.Provider>
             
     )
+}
+
+const Dashboard = {
+    Page: DashboardPage,
+    Context: DashboardContext
 }
 
 export default Dashboard;

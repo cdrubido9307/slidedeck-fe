@@ -3,14 +3,14 @@ import "./css/Sidebar.css";
 // Import major dependencies
 import React, { useContext, useRef, useState } from 'react';
 // Import components
-import { DashboardContext } from "../views/Dashboard";
+import Dashboard from "../views/Dashboard";
 import FX from './FX';
 // Import icons
 import { FaChevronRight } from "react-icons/fa";
 
 const Sidebar = (props) => {
     
-    const dashboardContext = useContext(DashboardContext)
+    const DashboardContext = useContext(Dashboard.Context)
     const [ripple, setRipple] = useState(FX.Ripple.util.defaultState());
     const ref = useRef();
     const onMouseDown = (e) => {
@@ -20,7 +20,7 @@ const Sidebar = (props) => {
         setRipple(FX.Ripple.util.stopState(e, ref));
     }
     const toggleSidebar = () => {
-        dashboardContext.setState((state) => {
+        DashboardContext.setState((state) => {
             const newState = { ...state };
             newState.sidebarShow = !state.sidebarShow;
             return newState;
@@ -41,10 +41,10 @@ const Sidebar = (props) => {
                 >
                     <FX.Ripple.Component state={ripple}/>
                     <FaChevronRight className="chevron"/>
-                    <img alt="Slidedeck logo" src="assets/slidedeck-icon.svg"/>
+                    <img alt="Slidedeck logo" src="/assets/slidedeck-icon.svg"/>
                 </button>
                 <div className="sidebar-logo-type">
-                    <img alt="Slidedeck logo" src="assets/slidedeck-type.svg"/>
+                    <img alt="Slidedeck logo" src="/assets/slidedeck-type.svg"/>
                 </div>
             </div>
             {props.children}
