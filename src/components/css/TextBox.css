@@ -2,9 +2,10 @@
 .text-box {
     @apply
     h-8
-    px-4
+    px-2
     rounded
-    filter-none;
+    filter-none
+    shadow;
 }
 .text-box.has-icon {
     @apply

@@ -15,6 +15,7 @@
     whitespace-nowrap
     transition-all
     shadow;
+    min-width: 2rem;
 }
 .button:hover {
     @apply

@@ -121,3 +121,33 @@
     @apply
     rotate-0;
 }
+
+.sidebar-gradient {
+    @apply
+    bg-red-300
+    w-4
+    h-full
+    fixed
+    z-50;
+    transition: margin-left var(--transition);
+    margin-left: var(--sidebar-closed-w);
+}
+.show-sidebar .sidebar-gradient {
+    margin-left: var(--sidebar-open-w);
+}
+.light .sidebar-gradient {
+    background: linear-gradient(to right, rgb(255, 255, 255), rgba(255, 255, 255, 0));
+}
+.dark .sidebar-gradient {
+    background: linear-gradient(to right, rgb(31, 41, 55), rgba(31, 41, 55, 0));
+}
+
+/* .header-gradient {
+    @apply h-4 mt-4 -mb-4 -mx-4;
+}
+.dark .header-gradient {
+    background: linear-gradient(to bottom, rgb(31, 41, 55), rgba(31, 41, 55, 0));
+}
+.light .header-gradient {
+    background: linear-gradient(to bottom, rgb(255, 255, 255), rgba(255, 255, 255, 0));
+} */

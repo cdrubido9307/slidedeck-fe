@@ -3,12 +3,13 @@ import "./css/Dashboard.css";
 // Import major dependencies
 import React, { createContext, useEffect, useState } from "react";
 import { Helmet } from 'react-helmet-async';
-import Page from "../components/Page";
+import { useHistory } from "react-router-dom";
 // Import components
+import Page from "../components/Page";
 import Sidebar from "../components/Sidebar";
 import SidebarItem from "../components/SidebarItems";
 // import HomeCards from "./dashboard-pages/HomeCards";
-import DeveloperCards from "./dashboard-pages/DeveloperCards";
+import DeveloperCards from "./dashboard-pages/DeveloperArea";
 // import Auth from "../components/Auth";
 import ManageLogs from "./dashboard-pages/ManageLogs";
 import ManageTemplates from "./dashboard-pages/ManageTemplates";
@@ -16,8 +17,27 @@ import ManageTemplates from "./dashboard-pages/ManageTemplates";
 // Import API and static content
 import dashboardItems from "../static/dashboardItems";
 import storage from "../static/storage";
-// import storage from "../static/storage";
+import parsePath from "../static/parsePath";
 
+const setUpDefaultState = (lastState, defaultState) => {
+    const path = window.location.pathname;
+    const pathSplit = parsePath.toArray(path);
+    let active = 0;
+    for (let i = 0; i < dashboardItems.length; i++) {
+        if (dashboardItems[i].path === "/" + pathSplit[1]) {
+            active = i;
+            break;
+        }
+    }
+    if (lastState) {
+        lastState.path = path;
+        lastState.active.i = active;
+        lastState.active.title = dashboardItems[active].title;
+    }
+    defaultState.path = path;
+    defaultState.active.i = active;
+    defaultState.active.title = dashboardItems[active].title;
+}
 const DashboardContext = createContext();
 
 const DashboardPage = (props) => {
@@ -28,39 +48,27 @@ const DashboardPage = (props) => {
             i: 0,
             title: dashboardItems[0].title,
         },
-        path: props.path ? props.path : "/dashboard/home",
+        path: "/dashboard/home",
         sidebarShow: true
     }
     const lastState = storage.get("dashboard");
-    if (props.path) {
-        let active = -1;
-        for (let i = 0; i < dashboardItems.length; i++) {
-            if ("/dashboard" + dashboardItems[i].path === props.path) {
-                active = i;
-                break;
-            }
-        }
-        if (lastState) {
-            lastState.path = props.path;
-            lastState.active.i = active;
-            lastState.active.title = dashboardItems[active].title;
-        }
-        defaultState.path = props.path;
-        defaultState.active.i = active;
-        defaultState.active.title = dashboardItems[active].title;
-    }
+    setUpDefaultState(lastState, defaultState);
     const [dashboardState, setDashboardState] = useState(lastState ? lastState : defaultState);
     const [dashboardContent, setDashboardContent] = useState(<></>);
+    const history = useHistory();
     // Update dashboard content based on unique path
     const updateDashboard = (state) => {
-        switch (state.path) {
-            case "/dashboard/logs":
+        storage.set("dashboard", state);
+        history.push(state.path);
+        const pathSplit = parsePath.toArray(state.path);
+        switch (pathSplit[1]) {
+            case "logs":
                 setDashboardContent(<ManageLogs/>);
                 break;
-            case "/dashboard/templates":
+            case "templates":
                 setDashboardContent(<ManageTemplates/>);
                 break;
-            case "/dashboard/dev":
+            case "dev":
                 setDashboardContent(<DeveloperCards/>);
                 break;
             default:
@@ -70,10 +78,7 @@ const DashboardPage = (props) => {
     }
     // Call appropriate update functions when main state changes
     useEffect(() => {
-        // console.log(AuthContext.user);
-        // console.log(dashboardState.path);
         updateDashboard(dashboardState);
-        storage.set("dashboard", dashboardState);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [dashboardState])
 

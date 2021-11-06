@@ -5,7 +5,7 @@
     pb-4
     pt-8
     px-4
-    z-50;
+    z-40;
     height: var(--header-h);
     width:  calc(100vw - var(--sidebar-closed-w))
 }
@@ -30,11 +30,9 @@
 .header-gradient {
     @apply h-4 mt-4 -mb-4 -mx-4;
 }
-
 .dark .header-gradient {
     background: linear-gradient(to bottom, rgb(31, 41, 55), rgba(31, 41, 55, 0));
 }
-
 .light .header-gradient {
     background: linear-gradient(to bottom, rgb(255, 255, 255), rgba(255, 255, 255, 0));
 }

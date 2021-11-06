@@ -26,26 +26,45 @@
 .show-sidebar .dashboard-main-content {
     width: calc(100vw - var(--sidebar-open-w));
 }
-.card .backdrop {
+.backdrop {
     @apply
-    p-4 
-    rounded;
+    rounded
+    overflow-hidden
+    p-4;
 }
-.light .card .backdrop {
+.backdrop .backdrop-header {
     @apply
-    bg-gray-100
+    pb-4
+    p-4
+    -m-4
+    mb-0
+    flex
+    items-center
+    space-x-4
+    min-w-max;
+}
+.backdrop .backdrop-header span {
+    @apply
+    flex
+    space-x-2
+    items-center
+    flex-shrink-0;
+}
+.light .backdrop {
+    @apply
+    bg-gray-100;
+}
+.light .backdrop .backdrop-header {
+    @apply
+    bg-gray-300
     bg-opacity-50;
 }
-.light .card .backdrop div {
-    @apply 
-    border-gray-200;
-}
-.dark .card .backdrop {
+.dark .backdrop {
     @apply
-    bg-gray-700
-    bg-opacity-50;
+    bg-gray-700;
 }
-.dark .card .backdrop div {
-    @apply 
-    border-gray-600;
+.dark .backdrop .backdrop-header {
+    @apply
+    bg-gray-800
+    bg-opacity-50;
 }

@@ -28,6 +28,8 @@ const TextBox = (props) => {
     return (
         <div className="text-box-wrapper">  
             <input
+                defaultValue={props.defaultValue}
+                readOnly={props.readOnly}
                 value={props.value}
                 onFocus={onFocus}
                 onBlur={onBlur}

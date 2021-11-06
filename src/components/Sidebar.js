@@ -27,28 +27,31 @@ const Sidebar = (props) => {
         });
     }
     return (
-        <div className={"sidebar " + (props.show ?  "open" : "closed")}>
-            {/* Blue corner */}
-            <div className="sidebar-logo">
-                <button 
-                    className="toggle-button"
-                    title={props.show ? "hide sidebar" : "show sidebar"}
-                    onClick={toggleSidebar} 
-                    onMouseDown={onMouseDown}
-                    onMouseUp={onMouseUp}
-                    onMouseLeave={onMouseUp}
-                    ref={ref}
-                >
-                    <FX.Ripple.Component state={ripple}/>
-                    <FaChevronRight className="chevron"/>
-                    <img alt="Slidedeck logo" src="/assets/slidedeck-icon.svg"/>
-                </button>
-                <div className="sidebar-logo-type">
-                    <img alt="Slidedeck logo" src="/assets/slidedeck-type.svg"/>
+        <>
+            <div className={"sidebar " + (props.show ?  "open" : "closed")}>
+                {/* Blue corner */}
+                <div className="sidebar-logo">
+                    <button 
+                        className="toggle-button"
+                        title={props.show ? "hide sidebar" : "show sidebar"}
+                        onClick={toggleSidebar} 
+                        onMouseDown={onMouseDown}
+                        onMouseUp={onMouseUp}
+                        onMouseLeave={onMouseUp}
+                        ref={ref}
+                    >
+                        <FX.Ripple.Component state={ripple}/>
+                        <FaChevronRight className="chevron"/>
+                        <img alt="Slidedeck logo" src="/assets/slidedeck-icon.svg"/>
+                    </button>
+                    <div className="sidebar-logo-type">
+                        <img alt="Slidedeck logo" src="/assets/slidedeck-type.svg"/>
+                    </div>
                 </div>
+                {props.children}
             </div>
-            {props.children}
-        </div>
+            <div className="sidebar-gradient"/>
+        </>
     )
 
 }

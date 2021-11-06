@@ -49,8 +49,8 @@ const FileBrowser = (props) => {
     const [view, setView] = useState(0);
 
     return (
-        <div className={"file-browser " + (view === 0 ? "icons" : "list")}>
-            <div className="browser-header">
+        <div className={"file-browser backdrop " + (view === 0 ? "icons" : "list")}>
+            <div className="backdrop-header">
                 <span>
                     <p>View as</p>
                     <ButtonGroup active={view} buttons={[

@@ -1,0 +1,142 @@
+.template-editor {
+    @apply
+    pt-4;
+}
+.group-blocks {
+    @apply
+    flex
+    space-x-2;
+}
+.group-blocks .col-group {
+    @apply
+    shadow
+    p-2
+    rounded
+    flex-grow;
+}
+.col-group .col-group-header {
+    @apply
+    flex;
+}
+.col-group .col-group-header > span {
+    @apply
+    text-center
+    space-y-2;
+}
+.col-group .col-group-title {
+    @apply
+    text-gray-400
+    text-xs
+    uppercase;
+}
+.col-group .columns {
+    @apply
+    mt-0
+    -m-1
+    p-1
+    flex
+    rounded
+    overflow-hidden;
+}
+.columns .col {
+    @apply
+    flex-grow
+    p-1
+    px-2
+    overflow-hidden;
+    width: 1px;
+    min-width: 64px;
+    /* background-color: red; */
+}
+.columns .col:hover {
+    @apply
+    rounded-sm
+    bg-carolina
+    bg-opacity-25
+    border-none;
+}
+.col p {
+    @apply truncate;
+}
+.col .col-heading {
+    @apply
+    text-xs
+    text-center
+    text-gray-400;
+}
+.col .col-name {
+    @apply
+    text-sm
+    text-center;
+}
+.light .group-blocks .col-group {
+    @apply
+    bg-gray-300
+    bg-opacity-50;
+}
+.dark .group-blocks .col-group {
+    @apply
+    bg-gray-800
+    bg-opacity-50;
+}
+
+
+.dark .columns {
+    @apply
+    bg-black
+    bg-opacity-20;
+}
+.light .columns {
+    @apply
+    bg-gray-300;
+}
+.dark .columns .col + .col {
+    @apply 
+    border-l
+    border-gray-700;
+}
+.light .columns .col + .col {
+    @apply 
+    border-l
+    border-gray-400;
+}
+
+
+.bracket {
+    @apply 
+    h-4
+    my-2
+    flex
+    items-center;
+}
+.bracket .left {
+    @apply
+    h-4
+    w-4;
+    background: url("/assets/bracket.png") center left / 64px 16px;
+}
+.bracket .center {
+    @apply
+    h-4
+    w-4;
+    background: url("/assets/bracket.png") center center / 64px 16px;
+}
+.bracket .right {
+    @apply
+    h-4
+    w-4;
+    background: url("/assets/bracket.png") center right / 64px 16px;
+}
+.bracket .extension {
+    @apply
+    h-4
+    flex-grow
+    bg-gray-300;
+    height: 6px;
+}
+.dark .bracket {
+    @apply
+    filter
+    brightness-0
+    opacity-20;
+}

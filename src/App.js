@@ -27,26 +27,8 @@ const App = () => {
                                 <Route exact path="/login">
                                     <Login/>
                                 </Route>
-                                <Route exact path="/dashboard">
-                                    <Redirect to="/dashboard/home"/>
-                                </Route>
-                                <Route exact path="/dashboard/home">
-                                    <Dashboard.Page path="/dashboard/home"/>
-                                </Route>
-                                <Route exact path="/dashboard/new">
-                                    <Dashboard.Page path="/dashboard/new"/>
-                                </Route>
-                                <Route exact path="/dashboard/logs">
-                                    <Dashboard.Page path="/dashboard/logs"/>
-                                </Route>
-                                <Route exact path="/dashboard/templates">
-                                    <Dashboard.Page path="/dashboard/templates"/>
-                                </Route>
-                                <Route exact path="/dashboard/reports">
-                                    <Dashboard.Page path="/dashboard/reports"/>
-                                </Route>
-                                <Route exact path="/dashboard/dev">
-                                    <Dashboard.Page path="/dashboard/dev"/>
+                                <Route path="/dashboard">
+                                    <Dashboard.Page/>
                                 </Route>
                             </Switch>
                         </BrowserRouter>

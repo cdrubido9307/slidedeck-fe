@@ -10,7 +10,7 @@ import React from "react";
 const ButtonGroup = (props) => {
 
     // const [active, setActive] = useState(props.active ? props.active : 0);
-    const active = props.active ? props.active : 0;
+    const active = props.active;
 
     return(
         <div className="button-group">
@@ -18,7 +18,6 @@ const ButtonGroup = (props) => {
                 <div 
                     key={i} 
                     className={"button-wrapper " + (i === active ? "active" : "")}
-                    // onClick={() => {setActive(i)}}
                 >
                     {button}
                 </div>

@@ -4,15 +4,12 @@ import React from "react";
 // Import components
 import Page from "../../components/Page";
 import Button from "../../components/Button";
-import ButtonGroup from "../../components/ButtonGroup";
 import ThemeSwitcher from "../../components/ThemeSwitcher";
 // Import icons
-import { IoIosAirplane } from "react-icons/io";
-import { FaThumbsUp, FaRegClock } from "react-icons/fa";
-import { CgMenuGridR } from "react-icons/cg";
-import { HiPlus } from "react-icons/hi";
+import { FaThumbsUp } from "react-icons/fa";
 // Import API and static content
 import storage from "../../static/storage";
+import Header from "../../components/Header";
 
 const DeveloperCards = (props) => {
 
@@ -22,20 +19,15 @@ const DeveloperCards = (props) => {
 
     return (
         <>
-            <Page>
+            <Header>
+                <p className="font-bold text-lg">Developer Area</p>
+            </Header>
+            <Page className="with-header">
+                <p>Pls be careful if you touch anything here</p>
+                <div className="h-4"/>
                 <ThemeSwitcher/>
                 <div className="h-4"/>
-                <ButtonGroup buttons={[
-                    <Button icon={FaRegClock}>Recent Logs</Button>,
-                    <Button icon={CgMenuGridR}>Browse Logs</Button>,
-                    <Button icon={HiPlus}>New Log</Button>
-                ]}/>
-                <div className="h-4"/>
-                <Button 
-                    icon={IoIosAirplane}
-                >
-                    Browse All Logs
-                </Button>
+                <p>DANGER</p>
                 <div className="h-4"/>
                 <Button 
                     onClick={clearLocalStorage}

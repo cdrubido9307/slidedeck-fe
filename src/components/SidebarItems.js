@@ -2,7 +2,6 @@
 import './css/SidebarItem.css';
 // Import major dependencies
 import React, { useContext, useRef, useState } from 'react';
-import { useHistory } from "react-router-dom";
 // Import components
 import Dashboard from "../views/Dashboard";
 import FX from './FX';
@@ -23,7 +22,6 @@ const SidebarItem = (props) => {
         setRipple(FX.Ripple.util.stopState(e, buttonRef));
     }
     // End Ripple FX
-    const history = useHistory();
     const changeDashboardPage = () => {
         DashboardContext.setState((state) => {
             const newState = { ...state };
@@ -32,10 +30,7 @@ const SidebarItem = (props) => {
             newState.active.title = props.title;
             return newState;
         })
-        history.push("/dashboard" + props.path);
     }
-
-    // const foo = props.icon ? props.icon : AiTwotoneFolderOpen;
 
     return (
         <div className="sidebar-item-wrapper">  

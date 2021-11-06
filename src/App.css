@@ -16,7 +16,6 @@
 body {
     @apply
     overflow-hidden;
-    transition: background-color 0.5s;
 }
 .light body {
     @apply
