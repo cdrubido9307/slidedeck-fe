@@ -1,0 +1,106 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 1,
+    "pending": 0,
+    "failures": 0,
+    "start": "2021-11-08T11:32:52.533Z",
+    "end": "2021-11-08T11:32:53.588Z",
+    "duration": 1055,
+    "testsRegistered": 1,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "eedea8ff-0e61-40ee-95e2-99b7a21d5a26",
+      "title": "",
+      "fullFile": "cypress/integration/login_test_correct_credentials.js",
+      "file": "cypress/integration/login_test_correct_credentials.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "5c6fac0f-fdd8-495e-bd20-6101f369546e",
+          "title": "Check login with correct username and password",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Try login",
+              "fullTitle": "Check login with correct username and password Try login",
+              "timedOut": null,
+              "duration": 1039,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit(\"/login\"); // Type admin as username\ncy.get(\"[type='text']\").type(\"admin\"); // Type admin as password\ncy.get(\"[type='password']\").type(\"admin\"); // Click LOG IN\ncy.contains('LOG IN').click().then(() => {\n  // Check if router app redirected to dashboard page\n  cy.url().should('include', '/dashboard');\n});",
+              "err": {},
+              "uuid": "f3a56192-c8fc-46c8-8fb7-47930f6ef97a",
+              "parentUUID": "5c6fac0f-fdd8-495e-bd20-6101f369546e",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "f3a56192-c8fc-46c8-8fb7-47930f6ef97a"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 1039,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.0.1"
+    },
+    "marge": {
+      "options": {
+        "charts": true,
+        "overwrite": false,
+        "html": false,
+        "json": true,
+        "reportDir": "cypress/report/mochawesome-report"
+      },
+      "version": "6.0.1"
+    }
+  }
+}
