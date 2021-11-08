@@ -87,7 +87,6 @@ const Login = (props) => {
                         icon={FaUserAlt}
                         className="w-full"
                         type="text"
-                        value="username"
                         placeholder="username" 
                         onChange={onUsernameChange}
                     />
@@ -95,8 +94,7 @@ const Login = (props) => {
                     <TextBox 
                         icon={FaLock}
                         className="w-full"
-                        type="password" 
-                        value="password"
+                        type="password"
                         placeholder="password" 
                         onChange={onPasswordChange}
                     />
