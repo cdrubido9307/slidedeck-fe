@@ -1,13 +1,13 @@
 describe('Visit the app login page and make sure is contains all the needed components', () => {
-    it("Check Login Page", ()=> {
+    it("Check login page content", ()=> {
         // Go to login Page
         cy.visit("/login")
 
         // Check it contains username, password, login button and forgot password
-        cy.get("[type='text']").type("admin")
-        cy.get("[type='password']")
-        cy.get("button").contains("LOG IN")
-        cy.contains("Forgot Password?")
+        cy.get("[type='text']").should('be.visible')
+        cy.get("[type='password']").should('be.visible')
+        cy.get("button").contains("LOG IN").should('be.visible')
+        cy.contains("Forgot Password?").should('be.visible')
 
         // Check if url includes login path
         cy.url().should('include', '/login')
@@ -15,5 +15,8 @@ describe('Visit the app login page and make sure is contains all the needed comp
 })
 
 describe('Check login functionality', ()=> {
-
+    it("Try login", ()=> {
+        cy.get("[type='text']").type("admin")
+        cy.get("[type='password']").type("admin")
+    })
 })

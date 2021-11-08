@@ -104,7 +104,7 @@ const Login = (props) => {
                             <LoadSpinner/>
                         </div>
                         :
-                        <Button 
+                        <Button id="login"
                             disabled={!username || !password}  
                             className="special center w-full font-bold" 
                             icon={FaChevronRight}
