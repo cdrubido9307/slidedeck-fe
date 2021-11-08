@@ -87,6 +87,7 @@ const Login = (props) => {
                         icon={FaUserAlt}
                         className="w-full"
                         type="text"
+                        value="username"
                         placeholder="username" 
                         onChange={onUsernameChange}
                     />
@@ -95,6 +96,7 @@ const Login = (props) => {
                         icon={FaLock}
                         className="w-full"
                         type="password" 
+                        value="password"
                         placeholder="password" 
                         onChange={onPasswordChange}
                     />
