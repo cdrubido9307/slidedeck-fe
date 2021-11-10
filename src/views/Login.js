@@ -95,7 +95,7 @@ const Login = (props) => {
                     <TextBox 
                         icon={FaLock}
                         className="w-full"
-                        type="password" 
+                        type="password"
                         placeholder="password" 
                         onChange={onPasswordChange}
                     />
@@ -105,7 +105,7 @@ const Login = (props) => {
                             <LoadSpinner/>
                         </div>
                         :
-                        <Button 
+                        <Button id="login"
                             disabled={!username || !password}  
                             className="special center w-full font-bold" 
                             icon={FaChevronRight}

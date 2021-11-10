@@ -1,0 +1,106 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 1,
+    "pending": 0,
+    "failures": 0,
+    "start": "2021-11-08T11:32:42.828Z",
+    "end": "2021-11-08T11:32:45.691Z",
+    "duration": 2863,
+    "testsRegistered": 1,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "63ffdc20-22e3-460a-bca6-1512716b2ca9",
+      "title": "",
+      "fullFile": "cypress/integration/dashboard_test.js",
+      "file": "cypress/integration/dashboard_test.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "d4686c1b-1f1d-4de7-b4d5-9ae4b29c1501",
+          "title": "Check login with correct username and password",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Try login",
+              "fullTitle": "Check login with correct username and password Try login",
+              "timedOut": null,
+              "duration": 2823,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit(\"/login\"); // Type admin as username\ncy.get(\"[type='text']\").type(\"admin\"); // Type admin as password\ncy.get(\"[type='password']\").type(\"admin\"); // Click LOG IN\ncy.contains('LOG IN').click({\n  force: true\n}).then(() => {\n  // Check if router app redirected to dashboard page\n  cy.url().should('include', '/dashboard');\n}); // Check if logo is in dashboard\ncy.get('img').should('have.attr', 'src').should('include', 'slidedeck'); // Check if has all the components\ncy.contains('Home');\ncy.contains('Enter Data');\ncy.contains('Manage Logs');\ncy.contains('Manage Templates');\ncy.contains('Reports');\ncy.contains('Developer Area'); // Navigate the dashboard\ncy.get('button').contains(\"Enter Data\").click({\n  force: true\n}).then(() => {\n  cy.url().should('include', '/new');\n});\ncy.get('button').contains(\"Home\").click({\n  force: true\n}).then(() => {\n  cy.url().should('include', '/home');\n});\ncy.get('button').contains(\"Manage Logs\").click({\n  force: true\n}).then(() => {\n  cy.url().should('include', '/logs');\n  cy.contains('List').click().then(() => {\n    cy.contains('testing testing hello world').should('be.visible');\n    cy.contains('lorem ipsum Dolor').should('be.visible');\n    cy.contains('Sit amet').should('be.visible');\n  });\n  cy.contains('Icons').click().then(() => {\n    cy.contains('testing testing hello world').should('be.visible');\n    cy.contains('lorem ipsum Dolor').should('be.visible');\n    cy.contains('Sit amet').should('be.visible');\n  });\n});\ncy.get('button').contains(\"Manage Templates\").click({\n  force: true\n}).then(() => {\n  cy.url().should('include', '/templates');\n});\ncy.get('button').contains(\"Reports\").click({\n  force: true\n}).then(() => {\n  cy.url().should('include', '/reports');\n});\ncy.get('button').contains(\"Developer Area\").click({\n  force: true\n}).then(() => {\n  cy.url().should('include', '/dev');\n  cy.contains('Default Dark').click().then(() => {\n    cy.get('body').should('have.css', 'background-color', 'rgb(31, 41, 55)');\n  });\n  cy.contains('Default Light').click().then(() => {\n    cy.get('body').should('have.css', 'background-color', 'rgb(255, 255, 255)');\n  });\n});",
+              "err": {},
+              "uuid": "1a608b99-0b1f-489c-b623-e8e4e5f0f529",
+              "parentUUID": "d4686c1b-1f1d-4de7-b4d5-9ae4b29c1501",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "1a608b99-0b1f-489c-b623-e8e4e5f0f529"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 2823,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.0.1"
+    },
+    "marge": {
+      "options": {
+        "charts": true,
+        "overwrite": false,
+        "html": false,
+        "json": true,
+        "reportDir": "cypress/report/mochawesome-report"
+      },
+      "version": "6.0.1"
+    }
+  }
+}
