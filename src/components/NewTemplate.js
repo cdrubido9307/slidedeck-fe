@@ -17,6 +17,7 @@ import api from "../static/api";
 import ButtonGroup from "./ButtonGroup";
 import Button from "./Button";
 import utils from "../static/utils";
+import Banner from "./Banner";
 
 const TemplateContext = createContext();
 
@@ -405,6 +406,7 @@ const ColumnGroup = (props) => {
 const NewTemplate = (props) => {
 
     const AuthContext = useContext(Auth.Context);
+    const [showBanner, setBanner] = useState(false);
     const [loading, setLoading] = useState(true);
     const [fileName, setFileName] = useState("New Template");
     const [templateState, setTemplateState] = useState(defaultTemplate());
@@ -432,7 +434,11 @@ const NewTemplate = (props) => {
     }
     // Init
     useEffect(() => {
-        api.get_template(AuthContext.user.token, appendFileNum);
+        if (AuthContext.user.loggedIn) {
+            api.get_template(AuthContext.user.token, appendFileNum);
+        } else {
+            setBanner(true);
+        }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
@@ -456,6 +462,9 @@ const NewTemplate = (props) => {
                     <Button icon={IoArrowUndo}>Undo</Button>
                     <Button icon={IoArrowRedo}>Redo</Button>
                     </span>
+                </div>
+                <div className="-mx-4">
+                    <Banner show={showBanner}>User logged out</Banner>
                 </div>
                 <div className="template-editor">
                     <div className="top-message">
