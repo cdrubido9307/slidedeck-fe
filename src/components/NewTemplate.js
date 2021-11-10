@@ -76,7 +76,7 @@ const Column = (props) => {
     }
 
     return (
-        <button onClick={() => {changeActiveCol(myColumnIndex)}} className={"col " + (isActive ? "active" : "")}>
+        <button title={`view group ${myGroupIndex+1} column ${myColumnIndex+1}`} onClick={() => {changeActiveCol(myColumnIndex)}} className={"col " + (isActive ? "active" : "")}>
             <p className="col-heading">G{myGroupIndex+1} C{myColumnIndex+1} {typeIcon}</p>
             <p className="col-name">{myColumn.name}</p>
         </button>
@@ -122,6 +122,33 @@ const ColumnEditor = (props) => {
         })
     }
 
+    const removeColumn = () => {
+        templateContext.setState((template) => {
+            const clone = utils.clone(template);
+            clone[myGroupIndex].columns.splice(myColIndex, 1);
+            return clone;
+        });
+        templateContext.setActive([-1, -1]);
+    }
+
+    const shiftColumn = (i) => {
+        if (i >= 0 && i <= templateContext.state[myGroupIndex].columns.length-1) {
+            const myClone = utils.clone(templateContext.state[myGroupIndex].columns[myColIndex]);
+            const swapClone = utils.clone(templateContext.state[myGroupIndex].columns[i]);
+            templateContext.setState((template) => {
+                const newTemplate = utils.clone(template);
+                newTemplate[myGroupIndex].columns.splice(i, 1, myClone);
+                newTemplate[myGroupIndex].columns.splice(myColIndex, 1, swapClone);
+                return newTemplate;
+            });
+            templateContext.setActive((active) => {
+                const clone = utils.clone(active);
+                clone[1] = i;
+                return clone;
+            })
+        }
+    }
+
     const Neighbor = (props) => {
         const neighborIndex = props.left ? myColIndex - 1 : myColIndex + 1;
         if (neighborIndex >= 0 && neighborIndex < templateContext.state[myGroupIndex].columns.length) {
@@ -149,10 +176,35 @@ const ColumnEditor = (props) => {
 
     return(
         <div className="column-editor">
-            {valid && 
+            {valid ? 
                 <>
                     <div className="ce-controls">
-
+                        <div className="ce-buttons">
+                            <span>
+                                <button 
+                                    title="shift column left" 
+                                    onClick={() => {shiftColumn(myColIndex-1)}}
+                                    className={"move-left " + (myColIndex <= 0 ? "disabled" : "")}
+                                >
+                                    <FaArrowLeft/>
+                                </button>
+                                <button 
+                                    title="delete this column" 
+                                    onClick={removeColumn} 
+                                    className="remove-self"
+                                >
+                                    <FaTimes/>
+                                    <div className="button-caret"/>
+                                </button>
+                                <button 
+                                    title="shift column right" 
+                                    onClick={() => {shiftColumn(myColIndex+1)}}
+                                    className={"move-left " + (myColIndex === templateContext.state[myGroupIndex].columns.length-1 ? "disabled" : "")}
+                                >
+                                    <FaArrowRight/>
+                                </button>
+                            </span>
+                        </div>
                     </div>
                     <div className="ce-left">
                         <Neighbor left/>
@@ -178,15 +230,21 @@ const ColumnEditor = (props) => {
                                 <p className="subtitle truncate">Column Data Type</p>
                                 <div className="flex-grow"/>
                                 <ButtonGroup active={activeType} buttons={[
-                                    <Button onClick={() => {changeDataType("text")}} icon={BiText}>Text</Button>,
-                                    <Button onClick={() => {changeDataType("number")}} icon={AiOutlineFieldNumber}>Number</Button>,
-                                    <Button onClick={() => {changeDataType("date")}} icon={IoCalendarSharp}>Date</Button>
+                                    <Button title="default basic text data" onClick={() => {changeDataType("text")}} icon={BiText}>Text</Button>,
+                                    <Button title="best used for numbers" onClick={() => {changeDataType("number")}} icon={AiOutlineFieldNumber}>Number</Button>,
+                                    <Button title="best used for dates" onClick={() => {changeDataType("date")}} icon={IoCalendarSharp}>Date</Button>
                                 ]}/>
                             </div>
                         </div>
                     </div>
                     <div className="ce-right">
                         <Neighbor right/>
+                    </div>
+                </>
+                :
+                <>
+                    <div className="h-full w-full flex items-center justify-center">
+                        <p className="subtitle italic">No column selected.</p>
                     </div>
                 </>
             }
@@ -266,10 +324,7 @@ const ColumnGroup = (props) => {
                 if (selfHasActive) clone[0] = i;
                 return clone;
             })
-        } else {
-            alert("Can't shift past end of list.");
         }
-        
     }
     const setGroupRole = (m) => {
         templateContext.setState((template) => {
@@ -283,23 +338,23 @@ const ColumnGroup = (props) => {
         <div className="col-group-wrapper">
             <div className="col-group-controls">
                 <div className="col-group-buttons">
-                    <button onClick={() => {addNewColumnGroup(props.index)}} className="add-left">
+                    <button title="insert new column group here" onClick={() => {addNewColumnGroup(props.index)}} className="add-left">
                         <FaPlus/>
                         <div className="button-caret"/>
                     </button>
                     <span>
-                        <button onClick={() => {shiftColumnGroup(props.index-1)}} className="move-left">
+                        <button title="shift column group left" onClick={() => {shiftColumnGroup(props.index-1)}} className="move-left">
                             <FaArrowLeft/>
                         </button>
-                        <button onClick={() => {removeColumnGroup()}} className="remove-self">
+                        <button title="delete this column group" onClick={() => {removeColumnGroup()}} className="remove-self">
                             <FaTimes/>
                             <div className="button-caret"/>
                         </button>
-                        <button onClick={() => {shiftColumnGroup(props.index+1)}} className="move-right">
+                        <button title="shift column group left" onClick={() => {shiftColumnGroup(props.index+1)}} className="move-right">
                             <FaArrowRight/>
                         </button>
                     </span>
-                    <button onClick={() => {addNewColumnGroup(props.index+1)}} className="add-right">
+                    <button title="insert new column group here" onClick={() => {addNewColumnGroup(props.index+1)}} className="add-right">
                         <FaPlus/>
                         <div className="button-caret"/>
                     </button>
@@ -311,8 +366,8 @@ const ColumnGroup = (props) => {
                     <span>
                         <p className="col-group-title">Group {props.index+1} to be completed by</p>
                         <ButtonGroup active={myGroup.role} buttons={[
-                            <Button onClick={() => {setGroupRole(0)}} icon={RiMicroscopeFill}>Technician</Button>,
-                            <Button onClick={() => {setGroupRole(1)}} icon={RiStethoscopeFill}>Pathologist</Button>
+                            <Button title="reserved for lab technicians" onClick={() => {setGroupRole(0)}} icon={RiMicroscopeFill}>Technician</Button>,
+                            <Button title="reserved for pathologists" onClick={() => {setGroupRole(1)}} icon={RiStethoscopeFill}>Pathologist</Button>
                         ]}/>
                     </span>
                     <div className="flex-grow"/>
@@ -332,7 +387,7 @@ const ColumnGroup = (props) => {
                         <Column col={col} pIndex={props.index} index={i} key={i}/>
                     )})}
                     <div className="new-col">
-                        <button
+                        <button title="create new column"
                             onClick={() => {addNewColumn(props.index)}}
                         >
                             <FaPlus/>
@@ -412,7 +467,7 @@ const NewTemplate = (props) => {
                             <ColumnGroup group={group} index={i} key={i}/>
                         )})}
                     </div>
-                    <div className="bottom-message">
+                    <div className={"bottom-message " + (activeCol[0] > -1 && activeCol[1] > -1 ? "hide" : "")}>
                         <FaRegHandPointer/>
                         <p>Select a column for more options.</p>
                     </div>

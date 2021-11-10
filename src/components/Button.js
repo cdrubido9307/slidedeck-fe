@@ -21,6 +21,7 @@ const Button = (props) => {
     // End Ripple FX
     return(
         <button 
+            title={props.title}
             ref={ref}
             disabled={props.disabled}
             className={"button " + props.className}

@@ -16,9 +16,11 @@
     text-sm
     text-gray-400;
     pointer-events: none !important;
-}
-.template-editor .top-message {
     transition: opacity var(--transition);
+}
+.template-editor .bottom-message.hide {
+    @apply
+    opacity-0;
 }
 .template-editor:hover .top-message {
     @apply
@@ -61,15 +63,15 @@
     @apply
     flex;
 }
-.col-group-buttons 
-span 
+.col-group-buttons span,
+.ce-buttons span 
 {
     @apply
     flex
     space-x-1;
 }
-.col-group-buttons 
-button 
+.col-group-buttons button,
+.ce-buttons button
 {
     @apply
     filter
@@ -82,9 +84,8 @@ button
     justify-center
     relative;
 }
-.col-group-buttons
-button
-svg {
+.col-group-buttons button svg,
+.ce-buttons button svg {
     @apply
     h-4
     w-4;
@@ -137,18 +138,17 @@ button.move-right
     bg-transparent
     opacity-20;
 }
-.col-group-wrapper:only-child 
-.col-group-buttons 
-button.remove-self 
+.col-group-wrapper:only-child .col-group-buttons button.remove-self,
+.col-group-wrapper:only-child .col-group-buttons button.remove-self .button-caret,
+.ce-buttons button.disabled 
 {
     @apply
     pointer-events-none
-    bg-transparent
+    bg-transparent !important
     opacity-20;
 }
-.col-group-buttons 
-button 
-.button-caret 
+.col-group-buttons button .button-caret,
+.ce-buttons button .button-caret
 {
     @apply
     h-2
@@ -179,14 +179,14 @@ button.add-right
     right-0;
     clip-path: polygon(0 0, 100% 100%, 100% 0);
 }
-.col-group-buttons 
-button:hover
-{
+.col-group-buttons button:hover,
+.ce-buttons button:hover {
     @apply
     text-carolina;
 }
 .col-group-buttons button:active,
-.new-col button:active
+.new-col button:active,
+.ce-buttons button:active
 {
     @apply
     brightness-90;
@@ -327,8 +327,18 @@ button:hover
 .column-editor {
     @apply
     flex
-    space-x-2;
-    min-height: 140px;
+    space-x-2
+    justify-center
+    relative;
+    height: 140px;
+}
+
+.ce-controls {
+    @apply
+    h-8
+    -mt-12
+    absolute
+    ;
 }
 
 .ce-center {
@@ -338,7 +348,8 @@ button:hover
 
 .ce-left, .ce-right {
     @apply
-    w-2/12;
+    w-2/12
+    flex-shrink-0;
 }
 
 .ce-header {
@@ -422,26 +433,34 @@ button:hover
     bg-green-500;
 }
 .col-group-buttons .remove-self,
-.col-group-buttons .remove-self .button-caret {
+.col-group-buttons .remove-self .button-caret,
+.ce-buttons .remove-self,
+.ce-buttons .remove-self .button-caret {
     @apply
     text-red-600;
 }
 .col-group-buttons .remove-self:hover,
-.col-group-buttons .remove-self:hover .button-caret {
+.col-group-buttons .remove-self:hover .button-caret,
+.ce-buttons .remove-self:hover,
+.ce-buttons .remove-self:hover .button-caret {
     @apply
     bg-red-600
     text-white;
 }
 .light .group-blocks .col-group,
 .light .col-group-buttons button, 
-.light .col-group-buttons button .button-caret {
+.light .col-group-buttons button .button-caret,
+.light .ce-buttons button,
+.light .ce-buttons button .button-caret {
     @apply
     bg-gray-300
     bg-opacity-50;;
 }
 .dark .group-blocks .col-group,
 .dark .col-group-buttons button, 
-.dark .col-group-buttons button .button-caret {
+.dark .col-group-buttons button .button-caret,
+.dark .ce-buttons button,
+.dark .ce-buttons button .button-caret {
     @apply
     bg-gray-800
     bg-opacity-50;
