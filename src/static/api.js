@@ -38,7 +38,7 @@ const api = {
             })
     },
     post_template_create: (template, callback) => {
-        const path = `${url}/template/create`;
+        const path = `${url}/templates/create`;
         axios
             .post(path, {
                 name: template.name,
@@ -53,7 +53,7 @@ const api = {
             })
     },
     get_template: (token, callback) => {
-        const path = `${url}/template/`;
+        const path = `${url}/templates/`;
         axios
             .get(path, {params: {
                 token: token
@@ -66,7 +66,7 @@ const api = {
             })
     },
     get_test: (token, callback) => {
-        const path = `${url}/test/`;
+        const path = `${url}/tests/`;
         axios
             .get(path, {params: {
                 token: token
@@ -79,7 +79,7 @@ const api = {
             })
     },
     post_test_create: (test, callback) => {
-        const path = `${url}/test/create`;
+        const path = `${url}/tests/create`;
         axios
             .post(path, {
                 name: test.name,
@@ -95,7 +95,7 @@ const api = {
             })
     },
     post_log_create: (log, callback) => {
-        const path = `${url}/log/create`;
+        const path = `${url}/logs/create`;
         axios
             .post(path, {
                 name: log.name,
@@ -111,7 +111,7 @@ const api = {
             })
     },
     get_log: (token, callback) => {
-        const path = `${url}/log/`;
+        const path = `${url}/logs/`;
         axios
             .get(path, {params: {
                 token: token
@@ -124,7 +124,7 @@ const api = {
             })
     },
     get_log_id: (id, token, callback) => {
-        const path = `${url}/log/${id}/`;
+        const path = `${url}/logs/${id}/`;
         axios
             .get(path, {params: {
                 token: token

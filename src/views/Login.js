@@ -1,5 +1,5 @@
 // Import CSS
-import "./css/Auth.css";
+import "./css/Login.css";
 // Import major dependencies
 import React, { useContext, useState } from "react";
 import { useHistory } from "react-router-dom";
@@ -46,12 +46,13 @@ const Login = (props) => {
     }
 
     const onSuccess = (data) => {
-        // console.log(data);
+        console.log(data);
         setLoading(false);
         if (data.result) {
-            const newUser = Auth.makeUser(username, undefined, data.token, true);
+            const newUser = { ...data.user };
+            newUser.loggedIn = true;
             AuthContext.setUser(newUser);
-            history.push("/dashboard");
+            history.push("/dashboard/home");
         } else {
             AuthContext.setUser(Auth.defaultUser);
             setShowError(true);
