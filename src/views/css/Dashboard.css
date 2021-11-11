@@ -19,7 +19,8 @@
     @apply
     flex
     flex-wrap 
-    overflow-scroll;
+    overflow-y-scroll
+    overflow-x-hidden;
     height: calc(100%);
     width: calc(100vw - var(--sidebar-closed-w));
 }
@@ -43,6 +44,16 @@
     space-x-4
     min-w-max;
 }
+.backdrop .backdrop-footer {
+    @apply
+    -m-4
+    mt-0
+    p-4
+    flex
+    items-center
+    space-x-4
+    min-w-max;
+}
 .backdrop .backdrop-header span {
     @apply
     flex
@@ -54,7 +65,8 @@
     @apply
     bg-gray-100;
 }
-.light .backdrop .backdrop-header {
+.light .backdrop .backdrop-header,
+.light .backdrop-footer {
     @apply
     bg-gray-300
     bg-opacity-50;
@@ -63,8 +75,14 @@
     @apply
     bg-gray-700;
 }
-.dark .backdrop .backdrop-header {
+.dark .backdrop .backdrop-header,
+.dark .backdrop-footer {
     @apply
     bg-gray-800
     bg-opacity-50;
+}
+
+svg {
+    @apply
+    flex-shrink-0;
 }

@@ -42,7 +42,7 @@ const api = {
         axios
             .post(path, {
                 name: template.name,
-                headers: template.headers,
+                columns: template.columns,
                 token: template.token
             })
             .then((response) => {

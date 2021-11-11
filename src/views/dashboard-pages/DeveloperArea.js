@@ -15,6 +15,7 @@ const DeveloperCards = (props) => {
 
     const clearLocalStorage = () => {
         storage.removeAll();
+        window.location.reload();
     }
 
     return (

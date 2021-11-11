@@ -10,14 +10,14 @@ const TextBox = (props) => {
 
     const [focus, setFocus] = useState(false);
 
-    const onFocus = () => {
+    const onFocus = (e) => {
         setFocus(true);
-        if (props.onFocus) props.onFocus();
+        if (props.onFocus) props.onFocus(e);
     }
 
-    const onBlur = () => {
+    const onBlur = (e) => {
         setFocus(false);
-        if (props.onBlur) props.onBlur();
+        if (props.onBlur) props.onBlur(e);
     }
 
     let className = "text-box " + props.className;

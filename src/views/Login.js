@@ -64,8 +64,8 @@ const Login = (props) => {
             <Helmet>
                 <title>Welcome</title>
             </Helmet>
-            <Banner show={showError}>
-                Invalid username/password. Please try again.
+            <Banner dismiss={() => {setShowError(false)}} show={showError}>
+                Invalid username and/or password. Please try again.
             </Banner>
             <div className="auth-background">
                 <div className="auth-card">

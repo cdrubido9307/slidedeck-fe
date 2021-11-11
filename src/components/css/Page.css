@@ -4,7 +4,8 @@
     p-4
     pt-8
     flex-grow
-    w-min;
+    w-min
+    overflow-x-hidden;
 }
 
 .page.with-header {
