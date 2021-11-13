@@ -13,6 +13,7 @@ import { RiListCheck2, RiListCheck } from "react-icons/ri";
 import { FaThumbsUp, FaChevronDown, FaChevronRight } from "react-icons/fa";
 // Import API and static content
 import api from "../static/api";
+import Banner from "./Banner";
 
 const BrowserPath = (props) => {
     const tokens = props.path.split("/");
@@ -52,6 +53,8 @@ const FileBrowser = (props) => {
     const [files, setFiles] = useState([]);
     const [view, setView] = useState(0);
     const [loading, setLoading] = useState(false);
+    const [bannerShow, setBannerShow] = useState(false);
+    const [bannerText, setBannerText] = useState("");
     const fileCount = files.length;
     const type = props.type;
     const from = props.from;
@@ -89,7 +92,8 @@ const FileBrowser = (props) => {
         if(AuthContext.user.loggedIn) {
             getFiles(type, from);
         } else {
-            console.log("LOGGED OUT");
+            setBannerShow(true);
+            setBannerText("User logged out. Please log back in.");
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [from, type]);
@@ -115,6 +119,9 @@ const FileBrowser = (props) => {
                     <Button icon={FaChevronDown}>Date Created</Button>
                 </span>
                 {loading && <LoadSpinner/>}
+            </div>
+            <div className="-mx-4">
+                <Banner show={bannerShow}>{bannerText}</Banner>
             </div>
             {(fileCount > 0) ? 
                 <div className="preview-box">
