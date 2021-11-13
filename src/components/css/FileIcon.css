@@ -15,8 +15,26 @@
     flex-col
     text-center
     bg-white
-    relative
-    overflow-hidden;
+    relative;
+}
+.file-icon .icon .type-label {
+    @apply
+    bg-carolina
+    text-white
+    font-bold
+    rounded
+    text-xs
+    h-5
+    w-5
+    -bottom-0.5
+    -right-0.5
+    shadow
+    flex
+    items-center
+    justify-center
+    px-1
+    uppercase
+    absolute;
 }
 .file-icon:hover {
     @apply

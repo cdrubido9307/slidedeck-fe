@@ -1,14 +1,14 @@
 // Import CSS
 import "./css/ManageTemplates.css";
 // Import major dependencies
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 // Import components
 import Page from "../../components/Page";
 import ButtonGroup from "../../components/ButtonGroup";
 import Button from "../../components/Button";
 import FileBrowser from "../../components/FileBrowser";
 import Header from "../../components/Header";
-import Auth from "../../components/Auth";
+// import Auth from "../../components/Auth";
 // import TextBox from "../../components/TextBox";
 import NewTemplate from "../../components/NewTemplate";
 import Dashboard from "../../views/Dashboard";
@@ -17,8 +17,8 @@ import { FaRegClock } from "react-icons/fa";
 import { CgMenuGridR } from "react-icons/cg";
 import { HiPlus } from "react-icons/hi";
 // Import API and static content
-import api from "../../static/api";
-import storage from "../../static/storage";
+// import api from "../../static/api";
+// import storage from "../../static/storage";
 import parsePath from "../../static/parsePath";
 
 const templatePages = [
@@ -47,10 +47,10 @@ const setUpDefaultState = (DashboardContext) => {
 
 const ManageTemplates = (props) => {
 
-    const AuthContext = useContext(Auth.Context);
+    // const AuthContext = useContext(Auth.Context);
     const DashboardContext = useContext(Dashboard.Context);
 
-    const [files, setFiles] = useState([]);
+    // const [files, setFiles] = useState([]);
     const [pageState, setPageState] = useState(setUpDefaultState(DashboardContext));
 
     const changeTemplatePage = (i) => {
@@ -68,29 +68,6 @@ const ManageTemplates = (props) => {
             return newState;
         })
     }
-    const getFiles = (get) => {
-        if (AuthContext.user.loggedIn) {
-            if (get === "recent") {
-                const recentFiles = storage.get("recent-templates");
-                setFiles(recentFiles ? recentFiles : []);
-            }
-            if (get === "all") {
-                api.get_template(AuthContext.user.token, onSuccess);
-            }
-        } else {
-            console.log("USER LOGGED OUT");
-        }
-    }
-    const onSuccess = (data) => {
-        console.log("GET result", data);
-        setFiles(data.result);
-    }
-    
-    useEffect(() => {
-        // console.log(pageState);
-        getFiles(pageState.name);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [pageState])
     
     let pageContent;
     switch (pageState.name) {
@@ -99,7 +76,7 @@ const ManageTemplates = (props) => {
                 <>
                     <p className="text-lg font-bold">Your Most Recent Templates</p>
                     <div className="h-4"/>
-                    <FileBrowser files={[]}/>
+                    <FileBrowser from="recent" type="template"/>
                 </>
             break;
         case "all":
@@ -107,7 +84,7 @@ const ManageTemplates = (props) => {
                 <>
                     <p className="text-lg font-bold">Browse All Templates</p>
                     <div className="h-4"/>
-                    <FileBrowser files={files}/>
+                    <FileBrowser from="all" type="template"/>
                 </>
             break;
         case "new":
@@ -116,7 +93,7 @@ const ManageTemplates = (props) => {
                     <p className="text-lg font-bold">Create a New Template</p>
                     <div className="h-4"/>
                     {/* <TextBox type="text" placeholder="New Template Name"/> */}
-                    <NewTemplate type="template"/>
+                    <NewTemplate changeTemplatePage={changeTemplatePage} type="template"/>
                 </>
             break;
         default:

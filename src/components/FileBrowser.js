@@ -1,15 +1,18 @@
 // Import CSS
 import "./css/FileBrowser.css";
 // Import major dependencies
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 // Import components
+import Auth from "./Auth";
 import ButtonGroup from "./ButtonGroup";
 import Button from "./Button";
 import FileIcon from "./FileIcon";
+import LoadSpinner from "./LoadSpinner";
 // Import icons
 import { RiListCheck2, RiListCheck } from "react-icons/ri";
 import { FaThumbsUp, FaChevronDown, FaChevronRight } from "react-icons/fa";
 // Import API and static content
+import api from "../static/api";
 
 const BrowserPath = (props) => {
     const tokens = props.path.split("/");
@@ -45,8 +48,51 @@ const EmptyMessage = () => {
 
 const FileBrowser = (props) => {
 
-    const fileCount = props.files !== undefined ? props.files.length : 0;
+    const AuthContext = useContext(Auth.Context);
+    const [files, setFiles] = useState([]);
     const [view, setView] = useState(0);
+    const [loading, setLoading] = useState(false);
+    const fileCount = files.length;
+    const type = props.type;
+    const from = props.from;
+    
+    const getFiles = (type, from) => {
+        if (from.includes("all")) {
+            if (type.includes("template")) {
+                // get all templates
+                api.get_template(AuthContext.user.token, onGetSuccess);
+                setLoading(true);
+            }
+            if (type.includes("log")) {
+                // get all logs
+                setFiles([]);
+            }
+        }
+        if (from.includes("recent")) {
+            if (type.includes("template")) {
+                // get recent templates
+                setFiles([]);
+            }
+            if (type.includes("log")) {
+                // get recent logs
+                setFiles([]);
+            }
+        }
+    }
+
+    const onGetSuccess = (data) => {
+        setLoading(false);
+        setFiles(data.result);
+    }
+
+    useEffect(() => {
+        if(AuthContext.user.loggedIn) {
+            getFiles(type, from);
+        } else {
+            console.log("LOGGED OUT");
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [from, type]);
 
     return (
         <div className={"file-browser backdrop " + (view === 0 ? "icons" : "list")}>
@@ -68,18 +114,19 @@ const FileBrowser = (props) => {
                     <p>Sort by</p>
                     <Button icon={FaChevronDown}>Date Created</Button>
                 </span>
+                {loading && <LoadSpinner/>}
             </div>
             {(fileCount > 0) ? 
                 <div className="preview-box">
-                    {props.files.map((file, i) => {return(
-                        <FileIcon file={file} key={i}/>
+                    {files.map((file, i) => {return(
+                        <FileIcon type={type} file={file} key={i}/>
                     )})}
                 </div>
                 :
                 <EmptyMessage/>
             }   
             <div className="browser-path">
-                <BrowserPath path="root/user/recents/logs" fileCount={fileCount}/>
+                <BrowserPath path={`${from}/${type}`} fileCount={fileCount}/>
             </div>
         </div>
     )

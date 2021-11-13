@@ -3,22 +3,22 @@ import "./css/NewTemplate.css";
 // Import major dependencies
 import React, { createContext, useContext, useEffect, useState } from "react";
 // Import components
-import TextBox from "./TextBox";
 import Auth from "./Auth";
+import Banner from "./Banner";
+import Button from "./Button";
+import ButtonGroup from "./ButtonGroup";
+// import Dashboard from "../views/Dashboard";
 import LoadSpinner from "./LoadSpinner";
+import TextBox from "./TextBox";
 // Import icons
 import { FaTimes, FaPlus, FaArrowLeft, FaArrowRight, FaRegHandPointer, FaCheck } from "react-icons/fa";
-import { IoCalendarNumber } from "react-icons/io5";
-// IoArrowUndo, IoArrowRedo, 
+import { IoCalendarNumber } from "react-icons/io5"; // , IoArrowUndo, IoArrowRedo
 import { RiStethoscopeFill, RiMicroscopeFill } from "react-icons/ri";
 import { BiText } from "react-icons/bi";
 import { AiOutlineNumber } from "react-icons/ai";
 // Import API and static content
 import api from "../static/api";
-import ButtonGroup from "./ButtonGroup";
-import Button from "./Button";
 import utils from "../static/utils";
-import Banner from "./Banner";
 
 const EditorContext = createContext();
 
@@ -424,10 +424,12 @@ const ColumnEditor = (props) => {
 
 const NewTemplate = (props) => {
 
+    // const DashboardContext = useContext(Dashboard.Context);
     const AuthContext = useContext(Auth.Context);
     const [bannerShow, setBannerShow] = useState(false);
     const [bannerText, setBannerText] = useState("");
     const [loading, setLoading] = useState(true);
+    const [postLoading, setPostLoading] = useState(false);
     const [fileName, setFileName] = useState("New Template");
     const [templateState, setTemplateState] = useState(defaultTemplate());
     const [activeCol, setActiveCol] = useState([-1, -1]);
@@ -459,7 +461,7 @@ const NewTemplate = (props) => {
     }
     const appendFileNum = (data) => {
         setFileName((name) => {
-            const newName = `${name} ${data.result.length}`;
+            const newName = `${name} ${data.result.length+1}`;
             return newName;
         });
         setLoading(false);
@@ -516,6 +518,7 @@ const NewTemplate = (props) => {
         return check;
     }
     const createNewTemplate = () => {
+        setPostLoading(true);
         const newTemplate = {
             name: "",
             columns: [],
@@ -538,6 +541,7 @@ const NewTemplate = (props) => {
             if (status) {
                 api.post_template_create(newTemplate, onSuccess);
             } else {
+                setPostLoading(false);
                 setBannerShow(true);
                 if (messages.length > 1) {
                     setBannerText(`${messages[0]}, and ${messages.length-1} other ${(messages.length-1) === 1 ? "problem was" : "problems were"} found in your template.`);
@@ -548,7 +552,9 @@ const NewTemplate = (props) => {
         }
     }
     const onSuccess = (data) => {
-        console.log(data);
+        // console.log(data);
+        setPostLoading(false);
+        props.changeTemplatePage(1);
     }
 
     useEffect(() => {
@@ -580,8 +586,8 @@ const NewTemplate = (props) => {
                         />
                     </span>
                     {loading && <LoadSpinner/>}
-                    {/* <div className="flex-grow"/>
-                    <span>
+                    <div className="flex-grow"/>
+                    {/* <span>
                         <Button icon={IoArrowUndo}>Undo</Button>
                         <Button icon={IoArrowRedo}>Redo</Button>
                     </span> */}
@@ -618,6 +624,7 @@ const NewTemplate = (props) => {
                     >
                         Create New Template
                     </Button>
+                    {postLoading && <LoadSpinner/>}
                     <div className="flex-grow"/>
                     <p className="subtitle">{templateState.length} {templateState.length === 1 ? "group" : "groups"}</p>
                     <p className="subtitle">{totalColumns} total {totalColumns === 1 ? "column" : "columns"}</p>

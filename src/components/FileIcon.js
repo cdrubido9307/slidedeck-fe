@@ -45,6 +45,12 @@ import React from "react";
 
 const FileIcon = (props) => {
 
+    // "log" or "template"
+    const type = props.type; 
+    const file = props.file;
+    const modiDate = new Date(file.touched);
+    // const madeDate = new Date(file.created);
+
     return(
         <div className="file-icon log">
             {/* <div className="icon">
@@ -53,13 +59,18 @@ const FileIcon = (props) => {
             </div> */}
             <div className="icon">
                 <img alt="Log file icon" src="/assets/log-file-icon.svg"/>
+                <div className="type-label">
+                    {type[0]}
+                </div>
             </div>
             <div className="info">
                 <p className="filename">
                     {/* {truncate(props.file.name, 32)} */}
-                    {props.file.name}
+                    {file.name}
                 </p>
-                <p className="subtitle">Last modified</p>
+                <p className="subtitle">
+                    {`${modiDate.getMonth()+1}/${modiDate.getDate()}/${modiDate.getFullYear()}`}
+                </p>
             </div>
         </div>
     )
