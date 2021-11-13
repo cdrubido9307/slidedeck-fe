@@ -9,6 +9,7 @@ import Dashboard from './views/Dashboard';
 import Login from './views/Login';
 import Theme from './components/Theme';
 import Auth from './components/Auth';
+import PrivateRoute from './components/PrivateRoute';
 // Import icons
 // Import API and static content
 
@@ -24,12 +25,8 @@ const App = () => {
                                 <Route exact path="/">
                                     <Redirect to="/login"/>
                                 </Route>
-                                <Route exact path="/login">
-                                    <Login/>
-                                </Route>
-                                <Route path="/dashboard">
-                                    <Dashboard.Page/>
-                                </Route>
+                                <Route exact path="/login" component={Login}/>
+                                <PrivateRoute path="/dashboard" component={Dashboard.Page}/>
                             </Switch>
                         </BrowserRouter>
                     </div>
