@@ -54,7 +54,7 @@ const ManageLogs = (props) => {
                 <>
                     <p className="text-lg font-bold">Your Most Recent Logs</p>
                     <div className="h-4"/>
-                    <FileBrowser files={testFiles}/>
+                    {/* <FileBrowser files={testFiles}/> */}
                 </>
             break;
         case 1:
@@ -62,7 +62,7 @@ const ManageLogs = (props) => {
                 <>
                     <p className="text-lg font-bold">Browse All Logs</p>
                     <div className="h-4"/>
-                    <FileBrowser files={testFiles}/>
+                    {/* <FileBrowser files={testFiles}/> */}
                 </>
             break;
         case 2:

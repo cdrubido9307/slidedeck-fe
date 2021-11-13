@@ -19,7 +19,7 @@
 }
 .file-icon .icon .type-label {
     @apply
-    bg-carolina
+    bg-theme
     text-white
     font-bold
     rounded
