@@ -68,7 +68,8 @@ const FileBrowser = (props) => {
             }
             if (type.includes("log")) {
                 // get all logs
-                setFiles([]);
+                api.get_log(AuthContext.user.token, onGetSuccess);
+                setLoading(true);
             }
         }
         if (from.includes("recent")) {
@@ -86,6 +87,7 @@ const FileBrowser = (props) => {
     const onGetSuccess = (data) => {
         setLoading(false);
         setFiles(data.result);
+        // console.log(data);
     }
 
     useEffect(() => {
