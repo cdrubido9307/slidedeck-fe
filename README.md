@@ -120,6 +120,14 @@ To do this in the Heroku dashboard follow these steps:
 
 ![This is an image](md-img/projects.png)
 
+    2. Click the access option on the menu.
+
+![This is an image](md-img/access.png)
+
+    3. Finally click on Add Collaborator and follow the steps.
+
+![This is an image](md-img/collaborator.png)
+
 Keep in mind that you will need a Heroku account in order to collaborate.
 
 The Heroku projects line up as follows:
@@ -128,17 +136,63 @@ The Heroku projects line up as follows:
     
     - slidedeck-fe (Frontend hosting React App). URL: https://slidedeck-fe.herokuapp.com/
 
+Both of the projects have continuous deployment enable via GitHub which you can access in the project repos:
+
+    - Backend: https://github.com/cdrubido9307/comp523-app.git
+    - Frontend: https://github.com/cdrubido9307/slidedeck-fe.git
+
+For the frontend project make sure that Heroku is using the React build pack which you can find:
+
+[React Build Pack for Heroku](https://github.com/mars/create-react-app-buildpack.git)
+
+To add a build pack or check if the build pack is already addded follow these steps:
+
+    1. On the project dashboard navigate to settings:
+
+![This is an image](md-img/settings.png)
+
+    2. Scroll down to the build pack option and check if the react build pack is added if not click on add build pack and follow the steps.
+
+![This is an image](md-img/build.png)
+
+Since continuos integration is enable in both projects you also need to make sure that the project administrator gives you access to the projects repo. To do this follow this guide:
+
+[GitHub guide to add a collaborator to your repo](https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-github-user-account/managing-access-to-your-personal-repositories/inviting-collaborators-to-a-personal-repository)
+
 ## API Reference
 
 ## Database Schema
 
 ## Technologies
 
+    1. Backend Technologies:
+        - Python >= 3.6 -> [Repo](https://github.com/cdrubido9307/comp523-app.git)
+        - FLASK -> [Repo](https://github.com/cdrubido9307/comp523-app.git)
+        - MongoDB -> (Mongo atlas cluster).
+    2. FrontEnd Technologies:
+        - Node.Js >= 16 -> [Repo](https://github.com/cdrubido9307/slidedeck-fe.git)
+        - React Framework -> [Repo](https://github.com/cdrubido9307/slidedeck-fe.git)
+        - Tailwindcss -> [Repo](https://github.com/cdrubido9307/slidedeck-fe.git)
+
 ## Contributing
+
+New developers should request access to the current project administrator to the following platforms:
+
+    - GitHub repos for the projects (Explain in the deployment section)
+    - Heroku Projects (Explain in the deployment section)
+    - MongoDB Atlas Cluster (Explain in the deployment section)
 
 ## Authors
 
+    - Alice Hayes
+    - Tom Nguyen
+    - Carlos D. Rubido
+
 ## License
 
+[MIT - Open source license](https://opensource.org/licenses/MIT)
+
 ## Acknowledgements
+
+    - Project Mentor: Jeff Byzek
 
