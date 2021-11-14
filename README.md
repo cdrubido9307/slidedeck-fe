@@ -118,7 +118,7 @@ To do this in the Heroku dashboard follow these steps:
 
     1. Navigate to the project by clicking the desire project from the project list in the heroku dashboard.
 
-<img src="https://ibb.co/mHZwP4P"/>
+![This is an image](md-img/projects.png)
 
 Keep in mind that you will need a Heroku account in order to collaborate.
 
