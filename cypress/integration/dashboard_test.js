@@ -1,4 +1,4 @@
-describe('Check login with correct username and password', ()=> {
+describe('Check dashboard', ()=> {
     it("Try login", ()=> {
         cy.visit("/login")
         // Type admin as username

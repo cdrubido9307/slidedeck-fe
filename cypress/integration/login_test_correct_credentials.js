@@ -6,7 +6,7 @@ describe('Check login with correct username and password', ()=> {
         // Type admin as password
         cy.get("[type='password']").type("admin")
         // Click LOG IN
-        cy.contains('LOG IN').click().then(()=> {
+        cy.contains('LOG IN').click({force: true}).then(()=> {
             // Check if router app redirected to dashboard page
             cy.url().should('include', '/dashboard')
         })

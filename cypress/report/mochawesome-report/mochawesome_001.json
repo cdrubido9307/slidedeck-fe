@@ -5,9 +5,9 @@
     "passes": 1,
     "pending": 0,
     "failures": 0,
-    "start": "2021-11-08T11:32:49.042Z",
-    "end": "2021-11-08T11:32:49.478Z",
-    "duration": 436,
+    "start": "2021-11-08T12:12:45.167Z",
+    "end": "2021-11-08T12:12:45.575Z",
+    "duration": 408,
     "testsRegistered": 1,
     "passPercent": 100,
     "pendingPercent": 0,
@@ -18,7 +18,7 @@
   },
   "results": [
     {
-      "uuid": "f7a00e19-8ccd-4f73-ae1f-d2568fb9482c",
+      "uuid": "80dca208-c78a-4ac1-a8cb-aefb0149281e",
       "title": "",
       "fullFile": "cypress/integration/login_test_components.js",
       "file": "cypress/integration/login_test_components.js",
@@ -27,7 +27,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "dc46d4bf-edc7-4885-89dc-920ca92ffd2c",
+          "uuid": "fb48fb1d-02bd-459c-9247-7e25b8d88f61",
           "title": "Visit the app login page and make sure is contains all the needed components",
           "fullFile": "",
           "file": "",
@@ -38,7 +38,7 @@
               "title": "Check login page content",
               "fullTitle": "Visit the app login page and make sure is contains all the needed components Check login page content",
               "timedOut": null,
-              "duration": 393,
+              "duration": 365,
               "state": "passed",
               "speed": "fast",
               "pass": true,
@@ -47,20 +47,20 @@
               "context": null,
               "code": "// Go to login Page\ncy.visit(\"/login\"); // Check it contains username, password, login button and forgot password\ncy.get(\"[type='text']\").should('be.visible');\ncy.get(\"[type='password']\").should('be.visible');\ncy.get(\"button\").contains(\"LOG IN\").should('be.visible');\ncy.contains(\"Forgot Password?\").should('be.visible'); // Check if url includes login path\ncy.url().should('include', '/login');",
               "err": {},
-              "uuid": "15783867-4ad9-4bde-a119-0e29793810ef",
-              "parentUUID": "dc46d4bf-edc7-4885-89dc-920ca92ffd2c",
+              "uuid": "5538ebd3-e672-43c3-b6be-fdc5c6e6b0bd",
+              "parentUUID": "fb48fb1d-02bd-459c-9247-7e25b8d88f61",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "15783867-4ad9-4bde-a119-0e29793810ef"
+            "5538ebd3-e672-43c3-b6be-fdc5c6e6b0bd"
           ],
           "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 393,
+          "duration": 365,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000
