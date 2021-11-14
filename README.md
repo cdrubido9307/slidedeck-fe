@@ -53,6 +53,10 @@ For frontend testing use **CypressJS** which has the following dependecies:
 
 Use NodeJs package manager **npm** to install those dependencies.
 
+For backend testing use the following dependencies:
+
+    - Alice
+
 ### 5. Installing
 Step by step installation process:
 
@@ -72,14 +76,57 @@ Step by step installation process:
 ### 6. Running Locally
 To start a local instance of the flask server once all the backend dependencies are installed you can navigate to the folder where the backend flask app is located (it should contain a file named api.py) and you should be able to start api.py as a regular python program:
 
-    `python3 api.py`
+    `python api.py`
+
+To start a local instance of the front end application navigate to the frontend react application folder. Once you are there run the command:
+
+    `npm start`
 
 ### 7. Warranty
-
+The application should work in most operating systems as long as all the requirements are met. However, we strongly recommend using a Linux based operating system.
 
 ## Testing
 
+### 1. Frontend Testing
+Before trying to create any frontend testing make sure all your testing prerequisites are up to date.
+
+    1. Navigate to the cypress folder then click on integration. In the integration folder is where you will add all your test for the frontend. To create a new test right click on the integration folder and create a new file with the name of your test, for example `test1.js`.
+
+    2. Once you have your test file you can start writting your test cases. For more information on how to use or create test cases please visit: https://docs.cypress.io/guides/overview/why-cypress.
+
+    3. Once you have finish writting your test you can proceed to run your test using the cypress dashboard. To do this fire up your terminal and navigate to the project folder where your cypress folder is and run the command: `node_modules/.bin/cypress open`. This command will open a new window with your cypress dashboard. After this you can go ahead and click on the test you want to run.
+
+    4. Once you are satisfied with all tests and you are ready to generate a testing report run the following commands:
+
+        1. `npx cypress run --reporter mochawesome`
+
+        2. `npx mochawesome-merge cypress/report/mochawesome-report/*.json > cypress/report/output.json`
+
+        3. `npx marge cypress/report/output.json --reportDir ./ --inline`
+
+    5. After you run the commands you will have an html file named output.html with you test report coverage. Open the html file in your browser to analyze the test report coverage.
+
+### 2. Backend Testing
+Alice
+
 ## Deployment
+The project deployment interface is hosted in 2 separate Heroku app. A frontend react app and a backend flask application that supports the project's API. To get access to both application ask the owner or the administrator of the project at the moment to grant you developer access to the projects: For more information on how to do this visit the link bellow:
+
+[Collaborating in Heroku](https://devcenter.heroku.com/articles/collaborating)
+
+To do this in the Heroku dashboard follow these steps:
+
+    1. Navigate to the project by clicking the desire project from the project list in the heroku dashboard.
+
+<img src="https://ibb.co/mHZwP4P"/>
+
+Keep in mind that you will need a Heroku account in order to collaborate.
+
+The Heroku projects line up as follows:
+
+    - be-slidedeck (Backend hosting the Flask API). URL: https://be-slidedeck.herokuapp.com/
+    
+    - slidedeck-fe (Frontend hosting React App). URL: https://slidedeck-fe.herokuapp.com/
 
 ## API Reference
 
