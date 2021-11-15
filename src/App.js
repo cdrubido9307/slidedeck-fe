@@ -7,6 +7,7 @@ import { HelmetProvider } from 'react-helmet-async';
 // Import components
 import Dashboard from './views/Dashboard';
 import Login from './views/Login';
+import Signup from './views/Signup';
 import Theme from './components/Theme';
 import Auth from './components/Auth';
 import PrivateRoute from './components/PrivateRoute';
@@ -26,6 +27,7 @@ const App = () => {
                                     <Redirect to="/login"/>
                                 </Route>
                                 <Route exact path="/login" component={Login}/>
+                                <Route exact path="/signup" component={Signup}/>
                                 <PrivateRoute path="/dashboard" component={Dashboard.Page}/>
                             </Switch>
                         </BrowserRouter>
