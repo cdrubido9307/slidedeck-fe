@@ -55,7 +55,9 @@ Use NodeJs package manager **npm** to install those dependencies.
 
 For backend testing use the following dependencies:
 
-    - Alice
+    - coverage
+    - flask-unittest
+    - Local instance of mongodb
 
 ### 5. Installing
 Step by step installation process:
@@ -107,7 +109,15 @@ Before trying to create any frontend testing make sure all your testing prerequi
     5. After you run the commands you will have an html file named output.html with you test report coverage. Open the html file in your browser to analyze the test report coverage.
 
 ### 2. Backend Testing
-Alice
+Tests.py contains all of the tests for the backend code. The class ADatabaseTests contains tests for database.py. It is written purely using vanilla unittest. The class qApiTests contains tests for api.py. It is written using vanilla unittest as well as the library flask-unittest.
+
+**Adding Test**
+In order to add tests for database.py, declare a new method in the ADatabaseTests the method name should start with "test_". Note that unittest runs the tests in the alphabetical order of the method names. Thus it is easiest to follow "test_" with letters that ensure it is run after other necessary methods are run.
+
+Adding tests for api.py is done by adding more test code to the bottom of the test_q_register method. You could declare new methods, but since many of the api endpoint tests rely on previous information it is easier to test api.py using one long integration test. Note that the api tests run after the database tests. This is a choice, but running api tests in the middle of database tests or vice versa will likely break the test suite.
+
+**Running Test**
+Before you can run the test suite you must install mongodb locally. You also must ensure that it is running before executing the test suite. To run the tests run "python tests.py". To generate an html report of the test coverage run "python -m coverage run -m tests.py" to run the test suite. Then run "python -m coverage html" to generate the html test coverage report in the htmlcov directory.
 
 ## Deployment
 The project deployment interface is hosted in 2 separate Heroku app. A frontend react app and a backend flask application that supports the project's API. To get access to both application ask the owner or the administrator of the project at the moment to grant you developer access to the projects: For more information on how to do this visit the link bellow:
@@ -161,7 +171,262 @@ Since continuos integration is enable in both projects you also need to make sur
 
 ## API Reference
 
+The project API endpoint is: https://be-slidedeck.herokuapp.com/
+
+### Implemented API methods
+
+1. **POST /template/create**
+
+*Request*
+
+```json
+{
+    "name": <string>,
+	"headers": {
+		<field name: string> : [<type: string>, <role: string>]
+	},
+	"token": <user auth token: string>
+}
+```
+
+2. **GET 	/template/?token=user_auth_token**
+
+*Return*
+
+```python
+# Returns template objects from database schema
+return{"result": [{...},{...},...]} 
+```
+
+3. **GET 	/template/<template_id>/?token=user_auth_token**
+
+*Return*
+
+```python
+# Returns a template object from the database schema
+return {...}
+```
+
+4. **POST  /test/create**
+
+*Request*
+
+```json
+{
+    "name":<string>,
+	"template": <template id>,
+	"fields":  [{name:<header name: string>, value: <value>}],
+	"token": <user auth token: string>
+}
+```
+
+5. **GET /test/?token<user_auth_token**
+
+*Return*
+
+```python
+# Retruns test onjects from database schema
+return {"result": [{...},{...},...]}
+```
+
+6. **POST /log/create**
+
+*Request*
+
+```json
+{
+    "template": <template id>,
+	"test": <test id>,
+	"name": <string>,
+	"token": <user auth token: string>
+}
+```
+
+```python
+return {"result": "LOG_OBJECT"}
+```
+
+7. **GET /log/<log_id>/?token=user_auth_token**
+
+*Return*
+
+```python
+# Returns a log object from database schema
+return {..}
+```
+
+8. **POST  /log/<log_id>/slide**
+
+*Request* 
+
+```json
+{
+    "fields": {<header name: string>: <value>)},
+	"submit": <boolean>,
+	"token": <user auth token>
+}
+```
+
+```python
+return {"result": {"SLIDE_OBJECT"}}
+```
+
+9. **PUT /log/<log_id>/slide/edit**
+
+*Request*
+
+```json
+{
+    "slide": <slide id>,
+	"fields": [(<header name: string>, <value>)],
+	"submit": <boolean>,
+	"token": <user auth token: string>
+}
+```
+
+10. **POST /register**
+
+*Request*
+
+```json
+{
+    "name": "name",
+	"password": "name",
+	"role": "role"
+}
+```
+
+```python
+return {"result": <boolean>}
+```
+
+11. **PUT /login**
+
+*Request*
+
+```json
+{
+    "name": "name",
+	"password": "name",
+}
+```
+
+```python
+return {"result": True, "token": <user auth token: string>} || {"result": False}
+```
+
+**GET /token?token=user_auth_token_string**
+
+*Return*
+
+```python
+return {"result": <boolean>}
+```
+
+### API methods pending for implementation
+
+1. **PUT /template/<template_id>/edit**
+2. **GET /test/<test_id>**
+3. **PUT /template/<template_id>/edit**
+4. **GET /log/<log_id>/slide/<slide_id>/?token=<user_auth_token**
+5. **GET /user/<user_id>**
+6. **POST /user/create**
+7. **PUT /user/edit**
+8. **GET /user/activity**
+9. **GET /history/**
+
+## Access to Atlas MongoDB Cluster
+In order to access the database cluster for development purposes the cluster is set to admit connections from any IP address. You can also find the database user and password information in the environment variables in the heroku project dashboard.
+
 ## Database Schema
+
+### Template Collection
+
+```json
+{
+    "id": <hexstring>, 
+    "name": <string>,
+    "created": <date>,
+    "touched": <date>,
+    "headers": {
+        "name": <string>:[<type>, "role": <string>],
+    }
+}
+```
+
+### Test Collection
+
+```json
+{
+    "id": <hexstring>,
+    "name": <string>,
+    "template": <template id: hexstring>,
+    "fields": [{name:<header name: string>, value: <value>}],
+    "created": <date>,
+    "touched": <date>
+}
+```
+
+### Log Collection
+
+```json
+{
+    "id": <hexstring>, 
+    "template": <template id: hexstring>, 
+    "test": <test id: hexstring>, 
+    "slides": [<slide id: hexstring>],
+    "name":<string>,
+    "created": <date>,
+    "touched": <date>
+
+}
+```
+
+### Slide Collection
+
+```json
+{
+    "id": <hexstring>, 
+    "log": <log id: hexstring>,
+    "fields": {<header name: string>: <value>},
+    "created": <date>,
+    "touched": <date>,
+    "users": [<name: string>],
+    "submitted": <boolean>,
+    "reviewed": {	
+        "date": <date>, 
+        "status": <boolean>
+    }
+}
+```
+
+### User Collection
+
+```json
+{
+    "id": <hexstring>,
+	"name": <string>,
+	"hash": <hash>,
+	"salt": <hex>,
+	"role": <user role>,
+	"history": [<id: slide, log, test, etc...>],
+	"created": <date>,
+	"touched": <date>,
+	"email": <email address>
+}
+```
+
+### History Collection
+
+```json
+{
+    "id": <hexstring>,
+	"name": <string>,
+	"action": <string>,
+    "target": <id: slide, log, test, etc…>,
+    "time": <date>
+}
+```
 
 ## Technologies
 
