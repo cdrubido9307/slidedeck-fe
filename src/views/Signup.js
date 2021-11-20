@@ -1,6 +1,8 @@
+// Import CSS
+import "./css/Signup.css";
 // Import major dependencies
-import React, { useContext, useRef, useState } from "react";
-import { useHistory } from "react-router-dom";
+import React, { useRef, useState } from "react";
+// import { useHistory } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 // Import components
 import Banner from "../components/Banner";
@@ -36,66 +38,63 @@ const Signup = (props) => {
                 Invalid username and/or password. Please try again.
             </Banner>
             <div className="auth-background">
-                <div className="auth-card">
-                    <div className="h-12"/>
-                    <div className="flex justify-center">
+                <div className="auth-window">
+                    <div className="auth-logo">
                         <img 
                             alt="Slidedeck logo"
                             src="/assets/slidedeck-logo.svg" 
-                            className="w-52 light-logo"
-                        />
-                        <img 
-                            alt="Slidedeck logo"
-                            src="/assets/slidedeck-logo-w.svg" 
-                            className="w-52 dark-logo"
+                            className="w-52"
                         />
                     </div>
-                    <div className="h-12"/>
-                    <div className="h-4"/>
-                    <TextBox 
-                        icon={BsFillPersonLinesFill}
-                        className="w-full"
-                        type="text"
-                        placeholder="Full Name" 
-                    />
-                    <div className="h-4"/>
-                    <TextBox 
-                        icon={MdEmail}
-                        className="w-full"
-                        type="text"
-                        placeholder="Email" 
-                    />
-                    <div className="h-4"/>
-                    <TextBox 
-                        icon={FaUserAlt}
-                        className="w-full"
-                        type="text"
-                        placeholder="Username" 
-                    />
-                    <div className="h-4"/>
-                    <TextBox 
-                        icon={FaLock}
-                        className="w-full"
-                        type="password"
-                        placeholder="Password" 
-                    />
-                    <div className="h-4"/>
-                    <TextBox 
-                        icon={FaLock}
-                        className="w-full"
-                        type="password"
-                        placeholder="Confirm Password" 
-                    />
-                    <div className="h-4" />
-                    <Upload title="Upload Signature" subtitle="Attach Image"/>
-                    <div className="h-6"/>
-                        <Button id="login"
-                            onClick={saveSignature}
-                            className="special center w-full font-bold" 
-                            icon={FaChevronRight}>
-                            SIGN UP
-                        </Button>
-                    <div className="h-4"/>
+                    <div className="auth-columns">
+                        <div className="auth-col">
+                            <span>
+                                <TextBox 
+                                    icon={BsFillPersonLinesFill}
+                                    className="w-full"
+                                    type="text"
+                                    placeholder="Full Name" 
+                                />
+                                <TextBox 
+                                    icon={MdEmail}
+                                    className="w-full"
+                                    type="text"
+                                    placeholder="Email" 
+                                />
+                            </span>
+                            <Upload title="Upload Signature" subtitle="Attach Image"/>
+                        </div>
+                        <div className="auth-col">
+                            <span>
+                                <TextBox 
+                                    icon={FaUserAlt}
+                                    className="w-full"
+                                    type="text"
+                                    placeholder="Username" 
+                                />
+                                <TextBox 
+                                    icon={FaLock}
+                                    className="w-full"
+                                    type="password"
+                                    placeholder="Password" 
+                                />
+                            </span>
+                            <TextBox 
+                                icon={FaLock}
+                                className="w-full"
+                                type="password"
+                                placeholder="Confirm Password" 
+                            />
+                            <div className="flex-grow"/>
+                            <TextBox 
+                                icon={FaLock}
+                                className="w-full"
+                                type="password"
+                                placeholder="One Time Code" 
+                            />
+                            <Button icon={FaChevronRight} className="special">SIGN UP</Button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </>
