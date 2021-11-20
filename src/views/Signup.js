@@ -6,6 +6,7 @@ import { Helmet } from "react-helmet-async";
 import Banner from "../components/Banner";
 import Button from "../components/Button";
 import TextBox from "../components/TextBox";
+import Upload from "../components/Upload";
 import LoadSpinner from "../components/LoadSpinner";
 import Auth from "../components/Auth";
 // Import icons
@@ -86,11 +87,7 @@ const Signup = (props) => {
                         placeholder="Confirm Password" 
                     />
                     <div className="h-4" />
-                    <SignaturePad
-                    ref={signature}
-                    penColor="blue" 
-                    canvasProps={{width: 290, height: 200, 
-                    className: "sigCanvas bg-gray-300"}} />
+                    <Upload title="Upload Signature" subtitle="Attach Image"/>
                     <div className="h-6"/>
                         <Button id="login"
                             onClick={saveSignature}
