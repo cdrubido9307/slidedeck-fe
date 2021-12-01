@@ -100,7 +100,7 @@ const api = {
             .post(path, {
                 name: log.name,
                 template: log.template,
-                test: log.test,
+                presets: log.presets,
                 token: log.token
             })
             .then((response) => {
