@@ -473,7 +473,7 @@ const NewTemplate = (props) => {
     const checkFileName = (e) => {
         const value = e.target.value;
         if (value.length === 0) {
-            setBannerText("File name cannot be blank.");
+            setBannerText("Template name cannot be blank.");
             setBannerShow(true);
         }
     }

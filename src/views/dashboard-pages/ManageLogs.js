@@ -91,7 +91,7 @@ const ManageLogs = (props) => {
                 <>
                     <p className="text-lg font-bold">Create a New Log</p>
                     <div className="h-4"/>
-                    <NewLog/>
+                    <NewLog changeTemplatePage={changeTemplatePage}/>
                 </>
             break;
         default:

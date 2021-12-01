@@ -33,7 +33,7 @@ const NewLog = (props) => {
     const checkFileName = (e) => {
         const value = e.target.value;
         if (value.length === 0) {
-            setBannerText("File name cannot be blank.");
+            setBannerText("Log name cannot be blank.");
             setBannerShow(true);
         }
         // setNewLogName(value);
@@ -46,7 +46,7 @@ const NewLog = (props) => {
     }
 
     const onTemplateClick = (file) => {
-        console.log(file);
+        // console.log(file);
         let columns = [];
         for (let header in file.headers) {
             // console.log(header);
@@ -57,7 +57,8 @@ const NewLog = (props) => {
     }
 
     const onNewLogSuccess = (data) => {
-        console.log(data);
+        // console.log(data);
+        props.changeTemplatePage(1);
     }
 
     const submitNewLog = () => {
@@ -65,7 +66,7 @@ const NewLog = (props) => {
             setBannerText("No template selected.");
             setBannerShow(true);
         } else if (newLogName.length === 0) {
-            setBannerText("File name cannot be blank");
+            setBannerText("Log name cannot be blank");
             setBannerShow(true);
         } else {
             const log = {
@@ -87,7 +88,7 @@ const NewLog = (props) => {
         <div className="new-log">
             <div className="template-select backdrop">
                 <div className="backdrop-header">
-                    <p>Select a template to be used by new log</p>
+                    <p className="h-8 flex items-center">Select a template to be used by new log</p>
                     {loading && <LoadSpinner/>}
                 </div>
                 <div className="-mx-4">
@@ -125,7 +126,7 @@ const NewLog = (props) => {
                                     <b className="truncate">{selectedTemplate.name}</b>
                                 </div>
 
-                                <div className="truncate flex items-center space-x-2">
+                                <div className="truncate flex items-center space-x-2 py-2 -my-2">
                                     <p className="truncate">New Log Name</p>
                                     <div className="flex-grow">
                                     <TextBox 
@@ -143,9 +144,12 @@ const NewLog = (props) => {
                                     <p className="subtitle">Chosen template has {columns.length} {columns.length == 1 ? "column" : "columns"}</p>
                                 </div>
                                 <div className="columns-preview">
-                                    {columns.map((col, i) => {return(
-                                        <div key={i} className="col">
-                                            <p className="truncate">{col}</p>
+                                    {columns.map((colName, i) => {return(
+                                        <div key={i} className="template-col">
+                                            <div className="col-name">
+                                                <p className="truncate">{colName}</p>
+                                            </div>
+                                            <TextBox placeholder="Optional default value" className="w-full"/>
                                         </div>
                                     )})}
                                 </div>
