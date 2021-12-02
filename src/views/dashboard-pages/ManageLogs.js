@@ -10,7 +10,7 @@ import Dashboard from "../../views/Dashboard";
 import FileBrowser from "../../components/FileBrowser";
 import Header from "../../components/Header";
 // Import icons
-import { FaRegHandPointer, FaPen } from "react-icons/fa";
+import { FaRegHandPointer, FaPen, FaCheck } from "react-icons/fa";
 import { CgMenuGridR } from "react-icons/cg";
 import { HiPlus } from "react-icons/hi";
 // Import API and static content
@@ -49,8 +49,8 @@ const ManageLogs = (props) => {
 
     // const [files, setFiles] = useState([]);
     const [pageState, setPageState] = useState(setUpDefaultState(DashboardContext));
-
     const [selectedLog, setSelectedLog] = useState(undefined);
+    const [editing, setEditing] = useState(false);
 
     const changeTemplatePage = (i) => {
         const pathSplit = parsePath.toArray(DashboardContext.state.path);
@@ -80,13 +80,23 @@ const ManageLogs = (props) => {
         case 0:
             pageContent = 
                 <>
-                    <p className="h-8 flex items-center text-lg font-bold">Browse All Logs</p>
-                    <div className="h-4"/>
-                    <FileBrowser 
-                        onSelect={onTemplateClick}
-                        from="all" 
-                        type="log"
-                    />
+                    <p className="h-8 flex items-center text-lg font-bold">
+                        {editing ? 
+                            "Editing Log"
+                            :
+                            "Browse All Logs"
+                        }
+                    </p>
+                    {!editing && 
+                        <>
+                            <div className="h-4"/>
+                            <FileBrowser 
+                                onSelect={onTemplateClick}
+                                from="all" 
+                                type="log"
+                            />
+                        </>
+                    }
                     <div className="h-4"/>
                     <div className="backdrop log-edit-prompt list">
                         <div className="backdrop-header p-2 pb-0 flex items-center space-x-2">
@@ -95,7 +105,23 @@ const ManageLogs = (props) => {
                                     <FaRegHandPointer/><p className="h-8 flex items-center">Select a log to begin editing</p>
                                 </>
                             :
-                                <Button icon={FaPen} className="special">Add Slides to This Log</Button>
+                                !editing ?
+                                    <Button
+                                        onClick={() => {setEditing(true)}}
+                                        icon={FaPen} 
+                                        className="special"
+                                    >
+                                        Add Slides to This Log
+                                    </Button>
+                                :
+                                    <Button
+                                        icon={FaCheck}
+                                        className="special"
+                                        onClick={() => {setEditing(false)}}
+                                    >
+                                        Save and Exit
+                                    </Button>
+                                
                             }
                         </div>
                         <div className="-mx-2 -mb-2 mt-2 pointer-events-none">
@@ -109,6 +135,105 @@ const ManageLogs = (props) => {
                             }
                         </div>
                     </div>
+                    {editing &&
+                        <div className="backdrop log-editor mt-4">
+                            <div className="table-wrapper">
+                                <div className="left">
+                                    <div className="side-header">To be completed by</div>
+                                    <div className="side-scroll">
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <td>hello</td>
+                                                    <td>world</td>
+                                                    <td>world</td>
+                                                    <td>world</td>
+                                                    <td>hello</td>
+                                                    <td>world</td>
+                                                    <td>world</td>
+                                                    <td>world</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>hello</td>
+                                                    <td>world</td>
+                                                    <td>world</td>
+                                                    <td>world</td>
+                                                    <td>hello</td>
+                                                    <td>world</td>
+                                                    <td>world</td>
+                                                    <td>world</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>hello</td>
+                                                    <td>world</td>
+                                                    <td>world</td>
+                                                    <td>world</td>
+                                                    <td>hello</td>
+                                                    <td>world</td>
+                                                    <td>world</td>
+                                                    <td>world</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>hello</td>
+                                                    <td>world</td>
+                                                    <td>world</td>
+                                                    <td>world</td>
+                                                    <td>hello</td>
+                                                    <td>world</td>
+                                                    <td>world</td>
+                                                    <td>world</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>hello</td>
+                                                    <td>world</td>
+                                                    <td>world</td>
+                                                    <td>world</td>
+                                                    <td>hello</td>
+                                                    <td>world</td>
+                                                    <td>world</td>
+                                                    <td>world</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    
+                                </div>
+                                <div className="right">
+                                    <div className="side-header">To be completed by</div>
+                                    <div className="side-scroll">
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <td>hello</td>
+                                                    <td>world</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>hello</td>
+                                                    <td>world</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>hello</td>
+                                                    <td>world</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>hello</td>
+                                                    <td>world</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>hello</td>
+                                                    <td>world</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
                 </>
             break;
         case 1:

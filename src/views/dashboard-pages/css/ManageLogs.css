@@ -4,8 +4,7 @@
     @apply
     /* bg-red-300 */
     flex
-    items-center
-    space-x-2;
+    items-center;
     height: 60px;
 }
 
@@ -28,4 +27,67 @@
 
 .dark .log-edit-prompt {
     background-color: rgb(55,65,81);
+}
+
+.log-editor .table-wrapper {
+    @apply
+    /* bg-red-300 */
+    flex
+    space-x-1;
+}
+
+.table-wrapper .left,
+.table-wrapper .right {
+    @apply
+    flex-grow
+    overflow-hidden
+    rounded;
+}
+
+.table-wrapper .side-scroll {
+    @apply
+    overflow-x-scroll
+    w-full;
+}
+
+.table-wrapper .side-header {
+    @apply
+    bg-theme-dark
+    text-sm
+    text-white
+    flex
+    items-center
+    justify-center
+    p-2
+    truncate;
+}
+
+.table-wrapper table {
+    @apply
+    w-full;
+}
+
+.table-wrapper table thead {
+    @apply
+    bg-theme-light
+    text-white
+    uppercase;
+}
+
+.table-wrapper table td {
+    @apply
+    p-2
+    text-center;
+}
+
+/* .table-wrapper table td:nth-child(even) {
+    @apply
+    bg-carolina
+    bg-opacity-10;
+} */
+
+.table-wrapper table tr:nth-child(even) {
+    @apply
+    bg-carolina
+    bg-opacity-10;
 }

@@ -60,6 +60,10 @@
     rounded-none;
 }
 
+.file-browser.mini .preview-box {
+    max-height: max-content;
+}
+
 .file-browser.mini .backdrop,
 .file-browser.mini .backdrop-header {
     @apply
