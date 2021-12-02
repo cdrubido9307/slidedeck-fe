@@ -80,21 +80,7 @@ const ManageLogs = (props) => {
         case 0:
             pageContent = 
                 <>
-                    <p className="text-lg font-bold">Browse All Logs</p>
-                    
-                    {/* <div className="log-edit-prompt list">
-                        <div className="p-2 pb-0 flex items-center space-x-2">
-                            <FaRegHandPointer/><p className="h-8 flex items-center">Select a log to begin editing</p>
-                        </div>
-                        {selectedLog ? 
-                            <FileIcon file={selectedLog} type="log"/>
-                        :
-                            <div className="log-blank-message">
-                                <div className="log-blank-icon"/>
-                                <p className="subtitle italic">No log selected.</p>
-                            </div>
-                        }
-                    </div> */}
+                    <p className="h-8 flex items-center text-lg font-bold">Browse All Logs</p>
                     <div className="h-4"/>
                     <FileBrowser 
                         onSelect={onTemplateClick}
@@ -109,7 +95,7 @@ const ManageLogs = (props) => {
                                     <FaRegHandPointer/><p className="h-8 flex items-center">Select a log to begin editing</p>
                                 </>
                             :
-                                <Button icon={FaPen} className="special">Edit This Log</Button>
+                                <Button icon={FaPen} className="special">Add Slides to This Log</Button>
                             }
                         </div>
                         <div className="-mx-2 -mb-2 mt-2 pointer-events-none">
