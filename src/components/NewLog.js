@@ -73,7 +73,7 @@ const NewLog = (props) => {
 
     const onNewLogSuccess = (data) => {
         // console.log(data);
-        props.changeTemplatePage(1);
+        props.changeTemplatePage(0);
     }
 
     const submitNewLog = () => {
