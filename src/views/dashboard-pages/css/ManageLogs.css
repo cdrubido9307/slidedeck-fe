@@ -1,0 +1,31 @@
+
+
+.log-edit-prompt .log-blank-message {
+    @apply
+    /* bg-red-300 */
+    flex
+    items-center
+    space-x-2;
+    height: 60px;
+}
+
+.log-edit-prompt .log-blank-icon {
+    @apply
+    bg-white
+    rounded-sm
+    shadow
+    ml-2;
+    /* w-10
+    h-full; */
+    height: 2.75rem;
+    width: 2.1rem;
+}
+
+
+.light .log-edit-prompt {
+    background-color: rgb(243, 244, 246);
+}
+
+.dark .log-edit-prompt {
+    background-color: rgb(55,65,81);
+}
